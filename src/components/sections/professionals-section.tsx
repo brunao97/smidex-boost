@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Check, MessageSquare } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Check, MessageSquare, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
@@ -39,6 +39,7 @@ const scaleIn = {
 
 export default function ProfessionalsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [testimonialSlide, setTestimonialSlide] = useState(0);
 
   const professionals = [
     {
@@ -93,21 +94,29 @@ export default function ProfessionalsSection() {
       user: "Cliente Bravo",
       msg: "Incrível mano o jogo tá mais rápido e o FPS tá batendo no piko de 300",
       metric: "300 FPS",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      role: "Gamer Competitivo",
     },
     {
       user: "Gamer Pro",
       msg: "Com os gráficos no médio e a resolução nativa. Só baixei e fui jogar. N mexi em nada.",
       metric: "Zero Config",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      role: "Streamer",
     },
     {
       user: "Cliente Smidex",
       msg: "Vim opinar sobre o Smidex Boost!! 10/10, excelente, eu tava jogando com fps cravado.",
       metric: "10/10",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+      role: "Jogador Casual",
     },
     {
       user: "Streamer",
       msg: "O delay realmente diminuiu e a fluidez aumentou e muito. Salvou pra kct.",
       metric: "Menos Input Lag",
+      avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face",
+      role: "Pro Player",
     },
   ];
 
@@ -117,6 +126,14 @@ export default function ProfessionalsSection() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + professionals.length) % professionals.length);
+  };
+
+  const nextTestimonial = () => {
+    setTestimonialSlide((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setTestimonialSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   const getVisiblePros = () => {
@@ -298,101 +315,116 @@ export default function ProfessionalsSection() {
         </div>
       </section>
 
-      {/* ADDITIONAL TESTIMONIALS / "CLIENTES REAIS" SECTION */}
-      <section className="relative py-16">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            
+      {/* TESTIMONIALS SLIDER SECTION */}
+      <section className="relative py-16 md:py-24">
+        <div className="container mx-auto px-6 md:px-12 max-w-5xl">
+          <motion.div
+            className="relative"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
             <motion.div 
-              className="lg:pr-10 sticky top-20"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
+              className="text-center mb-12"
+              variants={fadeInUp}
             >
-              <div className="inline-block border-b-2 border-[#FF3333] pb-1 mb-4">
-                <span className="text-[#D4B0B0] text-sm uppercase tracking-widest font-semibold">O veredito é unânime: menos lag, mais FPS.</span>
-              </div>
-              
-              <motion.h2 
-                className="font-display font-bold text-4xl md:text-5xl leading-tight mb-6 mt-4"
-                variants={fadeInUp}
-                transition={{ duration: 0.6 }}
-              >
-                Clientes Reais.<br/>
-                Performance<br/>
-                Comprovada.
-              </motion.h2>
-              
-              <motion.p 
-                className="text-[#D4B0B0] text-base leading-relaxed mb-8 max-w-md"
-                variants={fadeInUp}
-                transition={{ duration: 0.6 }}
-              >
-                Experiência de alto nível, para jogadores profissionais e casuais. Chegue no seu máximo, sem travamentos.
-              </motion.p>
-
-              <button className="bg-[#FF3333] hover:bg-[#D42222] text-[#1A0F0F] font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-[0_4px_20px_rgba(255,51,51,0.3)]">
-                Destrave seu pc agora!
-              </button>
+              <span className="text-[#FF3333] text-sm uppercase tracking-widest font-semibold mb-2 block">Depoimentos</span>
+              <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight">
+                O que nossos clientes dizem
+              </h2>
             </motion.div>
 
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 relative"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={staggerContainer}
-            >
-              <motion.div 
-                className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-[#FF3333] opacity-5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 0.05, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
+            <div className="relative bg-gradient-to-br from-[#2A1414] to-[#1A0F0F] rounded-3xl p-8 md:p-16 border border-[#3A2020] overflow-hidden">
+              <BorderBeam 
+                className="inset-0 top-0 left-0"
+                lightColor="#DC143C"
+                lightWidth={200}
+                duration={10}
+                borderWidth={2}
               />
               
-              {testimonials.map((t, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className={`relative p-5 rounded-2xl bg-[#2A1414]/80 backdrop-blur-sm border border-[#FF3333]/30 hover:border-[#FF3333] transition-all duration-300 group overflow-hidden ${idx % 2 !== 0 ? 'md:translate-y-12' : ''}`}
-                  variants={scaleIn}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
+              <div className="absolute top-8 left-8 md:top-12 md:left-12">
+                <Quote className="w-16 h-16 md:w-24 md:h-24 text-[#FF3333]/20" />
+              </div>
+
+              <div className="relative z-10 min-h-[280px] flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={testimonialSlide}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-center"
+                  >
+                    <p className="text-xl md:text-3xl lg:text-4xl font-light text-white leading-relaxed mb-10 max-w-3xl mx-auto">
+                      "{testimonials[testimonialSlide].msg}"
+                    </p>
+
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-[#FF3333]/50">
+                        <Image
+                          src={testimonials[testimonialSlide].avatar}
+                          alt={testimonials[testimonialSlide].user}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-display font-bold text-lg text-white">
+                          {testimonials[testimonialSlide].user}
+                        </h4>
+                        <p className="text-[#D4B0B0] text-sm">
+                          {testimonials[testimonialSlide].role}
+                        </p>
+                        <span className="inline-block mt-2 text-xs font-bold text-[#FF3333] bg-[#FF3333]/10 px-3 py-1 rounded-full">
+                          {testimonials[testimonialSlide].metric}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="flex items-center justify-center gap-6 mt-10 relative z-10">
+                <motion.button
+                  onClick={prevTestimonial}
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-[#3A2020] border border-[#FF3333]/30 hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Previous testimonial"
                 >
-                  <BorderBeam 
-                    className="inset-0 top-0 left-0"
-                    lightColor="#DC143C"
-                    lightWidth={150}
-                    duration={8}
-                    borderWidth={3}
-                  />
-                  <div className="flex justify-between items-start mb-4 relative z-10">
-                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#3A2020] flex items-center justify-center">
-                           <MessageSquare className="w-4 h-4 text-[#FF3333]" />
-                        </div>
-                        <span className="text-xs font-semibold text-[#FF3333] bg-[#FF3333]/10 px-2 py-0.5 rounded-full">WhatsApp</span>
-                     </div>
-                     <span className="text-[10px] text-[#806060]">19:42</span>
-                  </div>
-                  
-                  <div className="bg-[#3A2020] p-3 rounded-lg rounded-tl-none mb-3 inline-block max-w-[90%] relative z-10">
-                     <p className="text-gray-200 text-sm leading-snug">"{t.msg}"</p>
-                  </div>
+                  <ChevronLeft className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+                </motion.button>
 
-                  <div className="flex items-center justify-between border-t border-[#3A2020] pt-3 mt-2 relative z-10">
-                     <span className="text-xs font-bold text-white uppercase">{t.user}</span>
-                     <div className="flex items-center gap-1.5">
-                        <Check className="w-3 h-3 text-[#FF3333]" />
-                        <span className="text-xs text-[#FF3333] font-bold">{t.metric}</span>
-                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                <div className="flex gap-2">
+                  {testimonials.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setTestimonialSlide(idx)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        idx === testimonialSlide
+                          ? 'bg-[#FF3333] w-8'
+                          : 'bg-[#3A2020] hover:bg-[#FF3333]/50'
+                      }`}
+                      aria-label={`Go to testimonial ${idx + 1}`}
+                    />
+                  ))}
+                </div>
 
-          </div>
+                <motion.button
+                  onClick={nextTestimonial}
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-[#3A2020] border border-[#FF3333]/30 hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
