@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Check, MessageSquare } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
@@ -48,8 +48,24 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1 }
 };
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0
+  }),
+  center: {
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0
+  })
+};
+
 export default function ProfessionalsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   const professionals = [
     {
@@ -135,11 +151,22 @@ export default function ProfessionalsSection() {
   ];
 
   const nextSlide = () => {
+    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % professionals.length);
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + professionals.length) % professionals.length);
+  };
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      nextSlide();
+    } else if (info.offset.x > swipeThreshold) {
+      prevSlide();
+    }
   };
 
   const getVisiblePros = () => {
@@ -172,73 +199,88 @@ export default function ProfessionalsSection() {
               variants={fadeInLeft}
               transition={{ duration: 0.7 }}
             >
-              {/* Cards Container */}
-              <div className="flex gap-4 overflow-hidden">
-                {getVisiblePros().map((pro, index) => (
-                  <motion.div 
-                    key={`${pro.id}-${index}`} 
-                    className="relative w-full md:w-1/2 flex-shrink-0 cursor-default"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    {/* Card Body */}
-                    <div 
-                      className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-[#2A1414]"
+              {/* Cards Container with Drag */}
+              <motion.div 
+                className="flex gap-4 overflow-hidden cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+              >
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                  {getVisiblePros().map((pro, index) => (
+                    <motion.div 
+                      key={`${currentSlide}-${pro.id}-${index}`} 
+                      className="relative w-full md:w-1/2 flex-shrink-0 cursor-default pointer-events-none"
+                      custom={direction}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 }
+                      }}
                     >
-                      <BorderBeam 
-                        className="inset-0 top-0 left-0"
-                        lightColor="#DC143C"
-                        lightWidth={150}
-                        duration={8}
-                        borderWidth={3}
-                      />
-                      <Image
-                        src={pro.image}
-                        alt={pro.name}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 768px) 100vw, 300px"
-                      />
-                      
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                      {/* Card Body */}
+                      <div 
+                        className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-[#2A1414]"
+                      >
+                        <BorderBeam 
+                          className="inset-0 top-0 left-0"
+                          lightColor="#DC143C"
+                          lightWidth={150}
+                          duration={8}
+                          borderWidth={3}
+                        />
+                        <Image
+                          src={pro.image}
+                          alt={pro.name}
+                          fill
+                          className="object-cover object-top"
+                          sizes="(max-width: 768px) 100vw, 300px"
+                        />
+                        
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
 
-                      {/* Content Overlay */}
-                      <div className="absolute bottom-0 left-0 w-full p-6">
-                        <div className="text-[#FF3333] text-sm font-semibold mb-1">
-                          {pro.followers}
-                        </div>
-                        <h3 className="font-display font-black text-3xl md:text-3xl tracking-wider text-white italic uppercase mb-2">
-                          {pro.name}
-                        </h3>
-                        
-                        <div className="flex items-center gap-2 text-gray-300 text-sm">
-                           {pro.platform === 'twitch' ? (
-                              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]"> 
-                                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
-                              </svg>
-                           ) : (
-                              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                              </svg>
-                           )}
-                           <span>{pro.social}</span>
-                        </div>
-                        
-                        {/* Pagination Dots visual for card */}
-                        <div className="flex gap-1 mt-4">
-                           <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                           <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
-                           <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
-                           <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
-                           <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
+                        {/* Content Overlay */}
+                        <div className="absolute bottom-0 left-0 w-full p-6">
+                          <div className="text-[#FF3333] text-sm font-semibold mb-1">
+                            {pro.followers}
+                          </div>
+                          <h3 className="font-display font-black text-3xl md:text-3xl tracking-wider text-white italic uppercase mb-2">
+                            {pro.name}
+                          </h3>
+                          
+                          <div className="flex items-center gap-2 text-gray-300 text-sm">
+                             {pro.platform === 'twitch' ? (
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]"> 
+                                  <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+                                </svg>
+                             ) : (
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]">
+                                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                             )}
+                             <span>{pro.social}</span>
+                          </div>
+                          
+                          {/* Pagination Dots visual for card */}
+                          <div className="flex gap-1 mt-4">
+                             {professionals.map((_, dotIndex) => (
+                               <div 
+                                 key={dotIndex}
+                                 className={`w-1.5 h-1.5 rounded-full transition-colors ${dotIndex === currentSlide ? 'bg-white' : 'bg-gray-600'}`}
+                               ></div>
+                             ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
 
               {/* Controls */}
               <div className="flex gap-2 text-white mt-4">
