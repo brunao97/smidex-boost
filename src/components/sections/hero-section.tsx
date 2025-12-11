@@ -3,6 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Hyperspeed from '@/components/Hyperspeed';
+import { hyperspeedPresets } from '@/components/HyperSpeedPresets';
+import TextType from '@/components/TextType';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -28,18 +32,10 @@ const scaleIn = {
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#1A0F0F]">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[#1A0F0F]"></div>
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#DC143C]/30 via-[#1A0F0F]/90 to-[#1A0F0F]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#DC143C]/15 via-transparent to-transparent"></div>
-        <motion.div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#DC143C]/25 blur-[100px] rounded-full opacity-50"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
+      <div className="absolute inset-0 z-0">
+        <Hyperspeed effectOptions={hyperspeedPresets.akira} />
       </div>
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-[#1A0F0F]/50 to-[#1A0F0F]"></div>
 
       <motion.div 
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center text-center"
@@ -68,9 +64,23 @@ const HeroSection = () => {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-white">
-            Desperte o poder real do seu PC
-          </span>
+          <TextType 
+            text={[
+              "Desperte o poder real do seu PC",
+              "Elimine travamentos de vez",
+              "Aumente seus FPS nos jogos",
+              "Performance máxima garantida",
+              "Seu PC como nunca viu antes"
+            ]}
+            typingSpeed={50}
+            deletingSpeed={30}
+            pauseDuration={2500}
+            loop={true}
+            className="text-white"
+            showCursor={true}
+            cursorCharacter="_"
+            cursorClassName="text-[#DC143C]"
+          />
         </motion.h1>
 
         <motion.p 
@@ -116,11 +126,18 @@ const HeroSection = () => {
           ].map((stat, index) => (
             <motion.div 
               key={index}
-              className="relative group bg-[#2A1414]/60 backdrop-blur-sm border border-[#3A2020] rounded-2xl p-8 transition-all duration-300 hover:border-[#DC143C]/50 hover:bg-[#2A1414]/80"
+              className="relative group bg-[#2A1414]/60 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:bg-[#2A1414]/80 overflow-hidden"
               variants={fadeInUp}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="flex flex-col items-center justify-center">
+              <BorderBeam 
+                className="inset-0 top-0 left-0"
+                lightColor="#DC143C"
+                lightWidth={150}
+                duration={8}
+                borderWidth={3}
+              />
+              <div className="flex flex-col items-center justify-center relative z-10">
                 <h2 className="font-display font-bold text-4xl lg:text-5xl text-white mb-2 group-hover:scale-105 transition-transform duration-300">
                   {stat.value}
                 </h2>
