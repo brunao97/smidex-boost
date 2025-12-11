@@ -64,9 +64,21 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
         >
           <TextType 
-            text="Desperte o poder real do seu PC"
-            speed={50}
+            text={[
+              "Desperte o poder real do seu PC",
+              "Elimine travamentos de vez",
+              "Aumente seus FPS nos jogos",
+              "Performance máxima garantida",
+              "Seu PC como nunca viu antes"
+            ]}
+            typingSpeed={50}
+            deletingSpeed={30}
+            pauseDuration={2500}
+            loop={true}
             className="text-white"
+            showCursor={true}
+            cursorCharacter="_"
+            cursorClassName="text-[#DC143C]"
           />
         </motion.h1>
 
