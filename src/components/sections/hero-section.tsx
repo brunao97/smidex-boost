@@ -48,14 +48,19 @@ const HeroSection = () => {
           variants={scaleIn}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
+          <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px] group">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765420995505.png?width=8000&height=8000&resize=contain"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=8000&height=8000&resize=contain"
               alt="Smidex Boost Logo"
               fill
-              className="object-contain"
+              className="object-contain rounded-full"
               priority
             />
+            <div className="absolute inset-0 rounded-full overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shine_3s_ease-in-out_infinite]" 
+                style={{ transform: 'skewX(-20deg)' }}
+              />
+            </div>
           </div>
         </motion.div>
 

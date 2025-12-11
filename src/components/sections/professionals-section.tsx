@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Check, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -186,6 +187,13 @@ export default function ProfessionalsSection() {
                       whileHover={{ y: -5 }}
                       transition={{ duration: 0.3 }}
                     >
+                      <BorderBeam 
+                        className="inset-0 top-0 left-0"
+                        lightColor="#DC143C"
+                        lightWidth={150}
+                        duration={8}
+                        borderWidth={3}
+                      />
                       <Image
                         src={pro.image}
                         alt={pro.name}
@@ -347,12 +355,19 @@ export default function ProfessionalsSection() {
               {testimonials.map((t, idx) => (
                 <motion.div 
                   key={idx} 
-                  className={`relative p-5 rounded-2xl bg-[#2A1414]/80 backdrop-blur-sm border border-[#FF3333]/30 hover:border-[#FF3333] transition-all duration-300 group ${idx % 2 !== 0 ? 'md:translate-y-12' : ''}`}
+                  className={`relative p-5 rounded-2xl bg-[#2A1414]/80 backdrop-blur-sm border border-[#FF3333]/30 hover:border-[#FF3333] transition-all duration-300 group overflow-hidden ${idx % 2 !== 0 ? 'md:translate-y-12' : ''}`}
                   variants={scaleIn}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  <div className="flex justify-between items-start mb-4">
+                  <BorderBeam 
+                    className="inset-0 top-0 left-0"
+                    lightColor="#DC143C"
+                    lightWidth={150}
+                    duration={8}
+                    borderWidth={3}
+                  />
+                  <div className="flex justify-between items-start mb-4 relative z-10">
                      <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-[#3A2020] flex items-center justify-center">
                            <MessageSquare className="w-4 h-4 text-[#FF3333]" />
@@ -362,11 +377,11 @@ export default function ProfessionalsSection() {
                      <span className="text-[10px] text-[#806060]">19:42</span>
                   </div>
                   
-                  <div className="bg-[#3A2020] p-3 rounded-lg rounded-tl-none mb-3 inline-block max-w-[90%]">
+                  <div className="bg-[#3A2020] p-3 rounded-lg rounded-tl-none mb-3 inline-block max-w-[90%] relative z-10">
                      <p className="text-gray-200 text-sm leading-snug">"{t.msg}"</p>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-[#3A2020] pt-3 mt-2">
+                  <div className="flex items-center justify-between border-t border-[#3A2020] pt-3 mt-2 relative z-10">
                      <span className="text-xs font-bold text-white uppercase">{t.user}</span>
                      <div className="flex items-center gap-1.5">
                         <Check className="w-3 h-3 text-[#FF3333]" />

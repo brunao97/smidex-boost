@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -121,7 +122,7 @@ export default function FaqSection() {
               <motion.div 
                 key={index}
                 className={cn(
-                  "bg-[#251010] border rounded-xl overflow-hidden transition-all duration-300 group",
+                  "bg-[#251010] border rounded-xl overflow-hidden transition-all duration-300 group relative",
                   openItem === index 
                     ? "border-red-500/50 shadow-[0_0_15px_rgba(220,38,38,0.15)] bg-[#2F1414]" 
                     : "border-[#3A2020] hover:border-red-500/30"
@@ -130,9 +131,16 @@ export default function FaqSection() {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={{ y: -2 }}
               >
+                <BorderBeam 
+                  className="inset-0 top-0 left-0"
+                  lightColor="#DC143C"
+                  lightWidth={150}
+                  duration={8}
+                  borderWidth={3}
+                />
                 <button
                   onClick={() => toggleItem(index)}
-                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none relative z-10"
                 >
                   <span className={cn(
                     "text-lg font-medium pr-8 transition-colors duration-200",

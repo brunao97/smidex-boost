@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Smidex Boost",
   description: "Desperte o poder real do seu PC",
+  icons: {
+    icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=64&height=64&resize=contain",
+  },
 };
 
 export default function RootLayout({
