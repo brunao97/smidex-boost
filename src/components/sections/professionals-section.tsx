@@ -198,16 +198,14 @@ export default function ProfessionalsSection() {
                 {getVisiblePros().map((pro, index) => (
                   <motion.div 
                     key={`${pro.id}-${index}`} 
-                    className="relative w-full md:w-1/2 flex-shrink-0 group cursor-default"
+                    className="relative w-full md:w-1/2 flex-shrink-0 cursor-default"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     {/* Card Body */}
-                    <motion.div 
-                      className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-[#2A1414] group-hover:border-[#FF3333]/50 transition-colors duration-500"
-                      whileHover={{ y: -5 }}
-                      transition={{ duration: 0.3 }}
+                    <div 
+                      className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-[#2A1414]"
                     >
                       <BorderBeam 
                         className="inset-0 top-0 left-0"
@@ -220,7 +218,7 @@ export default function ProfessionalsSection() {
                         src={pro.image}
                         alt={pro.name}
                         fill
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover object-top"
                         sizes="(max-width: 768px) 100vw, 300px"
                       />
                       
@@ -258,7 +256,7 @@ export default function ProfessionalsSection() {
                            <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
