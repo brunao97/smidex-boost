@@ -171,59 +171,55 @@ export default function GamesSolutionSection() {
             <div className="flex overflow-hidden group select-none mask-linear-fade">
               <div className="flex animate-scroll hover:pause-scroll gap-6 pl-6">
                 {GAME_ASSETS.map((game, index) => (
-                  <motion.div 
-                    key={`game-1-${index}`} 
-                    className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg transition-transform duration-300 hover:-translate-y-2"
-                    whileHover={{ y: -10, scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <BorderBeam 
-                      className="inset-0 top-0 left-0"
-                      lightColor="#DC143C"
-                      lightWidth={150}
-                      duration={8}
-                      borderWidth={3}
-                    />
-                    <Image
-                      src={game.src}
-                      alt={game.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 180px, 220px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <span className="text-white font-display font-bold text-sm tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden">
-                        {game.name}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-                
-                {GAME_ASSETS.map((game, index) => (
-                  <motion.div 
-                    key={`game-2-${index}`} 
-                    className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg transition-transform duration-300 hover:-translate-y-2"
-                    whileHover={{ y: -10, scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <BorderBeam 
-                      className="inset-0 top-0 left-0"
-                      lightColor="#DC143C"
-                      lightWidth={150}
-                      duration={8}
-                      borderWidth={3}
-                    />
-                    <Image
-                      src={game.src}
-                      alt={game.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 180px, 220px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                  </motion.div>
-                ))}
+                    <motion.div 
+                      key={`game-1-${index}`} 
+                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
+                    >
+                      <BorderBeam 
+                        className="inset-0 top-0 left-0"
+                        lightColor="#DC143C"
+                        lightWidth={150}
+                        duration={8}
+                        borderWidth={3}
+                      />
+                      <Image
+                        src={game.src}
+                        alt={game.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 180px, 220px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <span className="text-white font-display font-bold text-sm tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden">
+                          {game.name}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                  
+                  {GAME_ASSETS.map((game, index) => (
+                    <motion.div 
+                      key={`game-2-${index}`} 
+                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
+                    >
+                      <BorderBeam 
+                        className="inset-0 top-0 left-0"
+                        lightColor="#DC143C"
+                        lightWidth={150}
+                        duration={8}
+                        borderWidth={3}
+                      />
+                      <Image
+                        src={game.src}
+                        alt={game.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 180px, 220px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                    </motion.div>
+                  ))}
               </div>
             </div>
           </motion.div>
