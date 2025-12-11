@@ -102,23 +102,24 @@ export default function LagProblemSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <motion.div 
-                  className="relative h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 hover:border-[#FF3333] transition-colors duration-300 group overflow-hidden"
+                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 hover:border-[#FF3333] transition-colors duration-300 group relative overflow-hidden"
                   whileHover={{ y: -8, transition: { duration: 0.25 } }}
                 >
                   <BorderBeam 
-                    lightColor="#FF3333" 
-                    duration={6} 
-                    lightWidth={100}
-                    borderWidth={1}
+                    className="inset-0 top-0 left-0"
+                    lightColor="#DC143C"
+                    lightWidth={150}
+                    duration={8}
+                    borderWidth={3}
                   />
                   <motion.div 
-                    className="p-0 transition-transform duration-300 group-hover:-translate-y-1"
+                    className="p-0 transition-transform duration-300 group-hover:-translate-y-1 relative z-10"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.2 }}
                   >
                     {card.icon}
                   </motion.div>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-4 relative z-10">
                     <h4 className="text-xl font-bold font-display text-white">
                       {card.title}
                     </h4>

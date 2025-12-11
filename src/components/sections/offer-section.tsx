@@ -154,16 +154,17 @@ export default function OfferSection() {
             transition={{ duration: 0.7 }}
           >
             <motion.div 
-              className="relative bg-[#1A1A1A] border border-[#331111] rounded-3xl p-6 md:p-10 shadow-2xl overflow-hidden"
+              className="bg-[#1A1A1A] border border-[#331111] rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
             >
-              <BorderBeam 
-                lightColor="#FF3333" 
-                duration={8} 
-                lightWidth={150}
-                borderWidth={1}
-              />
+                <BorderBeam 
+                  className="inset-0 top-0 left-0"
+                  lightColor="#DC143C"
+                  lightWidth={150}
+                  duration={8}
+                  borderWidth={3}
+                />
                <motion.div 
                  className="absolute top-0 right-0 w-64 h-64 bg-red-900/10 blur-[80px] rounded-full pointer-events-none"
                  initial={{ opacity: 0, scale: 0.5 }}
@@ -229,8 +230,15 @@ const TimerBlock = ({ value, label, delay = 0 }: { value: string; label: string;
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
     >
+      <BorderBeam 
+        className="inset-0 top-0 left-0"
+        lightColor="#DC143C"
+        lightWidth={80}
+        duration={6}
+        borderWidth={2}
+      />
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-      <span className="font-display font-bold text-4xl md:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm">
+      <span className="font-display font-bold text-4xl md:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm relative z-10">
         {value}
       </span>
     </motion.div>

@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -176,6 +177,13 @@ export default function GamesSolutionSection() {
                     whileHover={{ y: -10, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
+                    <BorderBeam 
+                      className="inset-0 top-0 left-0"
+                      lightColor="#DC143C"
+                      lightWidth={150}
+                      duration={8}
+                      borderWidth={3}
+                    />
                     <Image
                       src={game.src}
                       alt={game.name}
@@ -199,6 +207,13 @@ export default function GamesSolutionSection() {
                     whileHover={{ y: -10, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
+                    <BorderBeam 
+                      className="inset-0 top-0 left-0"
+                      lightColor="#DC143C"
+                      lightWidth={150}
+                      duration={8}
+                      borderWidth={3}
+                    />
                     <Image
                       src={game.src}
                       alt={game.name}
