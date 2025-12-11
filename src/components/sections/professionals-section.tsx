@@ -172,28 +172,6 @@ export default function ProfessionalsSection() {
               variants={fadeInLeft}
               transition={{ duration: 0.7 }}
             >
-              {/* Controls */}
-              <div className="flex gap-2 text-white mb-4">
-                <motion.button 
-                  onClick={prevSlide}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
-                  aria-label="Previous slide"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronLeft className="w-5 h-5 group-hover:text-black transition-colors" />
-                </motion.button>
-                <motion.button 
-                  onClick={nextSlide}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
-                  aria-label="Next slide"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronRight className="w-5 h-5 group-hover:text-black transition-colors" />
-                </motion.button>
-              </div>
-
               {/* Cards Container */}
               <div className="flex gap-4 overflow-hidden">
                 {getVisiblePros().map((pro, index) => (
@@ -260,6 +238,28 @@ export default function ProfessionalsSection() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
+              {/* Controls */}
+              <div className="flex gap-2 text-white mt-4">
+                <motion.button 
+                  onClick={prevSlide}
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  aria-label="Previous slide"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronLeft className="w-5 h-5 group-hover:text-black transition-colors" />
+                </motion.button>
+                <motion.button 
+                  onClick={nextSlide}
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  aria-label="Next slide"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                </motion.button>
               </div>
             </motion.div>
 
