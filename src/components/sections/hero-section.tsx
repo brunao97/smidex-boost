@@ -48,7 +48,14 @@ const HeroSection = () => {
           variants={scaleIn}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
+          <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden">
+            <BorderBeam 
+              className="inset-0 top-0 left-0"
+              lightColor="#DC143C"
+              lightWidth={150}
+              duration={8}
+              borderWidth={3}
+            />
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=8000&height=8000&resize=contain"
               alt="Smidex Boost Logo"
