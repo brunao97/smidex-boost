@@ -2,6 +2,7 @@
 
 import { Gauge, Target, ShieldCheck, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { BorderBeam } from '@/components/ui/border-beam';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -101,9 +102,15 @@ export default function LagProblemSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <motion.div 
-                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 hover:border-[#FF3333] transition-colors duration-300 group"
+                  className="relative h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 hover:border-[#FF3333] transition-colors duration-300 group overflow-hidden"
                   whileHover={{ y: -8, transition: { duration: 0.25 } }}
                 >
+                  <BorderBeam 
+                    lightColor="#FF3333" 
+                    duration={6} 
+                    lightWidth={100}
+                    borderWidth={1}
+                  />
                   <motion.div 
                     className="p-0 transition-transform duration-300 group-hover:-translate-y-1"
                     whileHover={{ scale: 1.1, rotate: 5 }}
