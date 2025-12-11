@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Hyperspeed from '@/components/Hyperspeed';
 import { hyperspeedPresets } from '@/components/HyperSpeedPresets';
+import TextType from '@/components/TextType';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,9 +63,11 @@ const HeroSection = () => {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-white">
-            Desperte o poder real do seu PC
-          </span>
+          <TextType 
+            text="Desperte o poder real do seu PC"
+            speed={50}
+            className="text-white"
+          />
         </motion.h1>
 
         <motion.p 
