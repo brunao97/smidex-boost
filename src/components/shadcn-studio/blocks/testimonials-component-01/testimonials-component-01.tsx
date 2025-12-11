@@ -8,6 +8,7 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel'
 import { Rating } from '@/components/ui/rating'
+import { BorderBeam } from '@/components/ui/border-beam'
 
 export type TestimonialItem = {
   name: string
@@ -57,7 +58,8 @@ const TestimonialsComponent = ({ testimonials }: TestimonialsComponentProps) => 
           <CarouselContent className='sm:-ml-6'>
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className='sm:pl-6 lg:basis-1/2'>
-                <Card className='hover:border-primary h-full transition-colors duration-300'>
+                <Card className='hover:border-primary h-full transition-colors duration-300 relative overflow-hidden'>
+                  <BorderBeam lightColor="#FF3333" duration={8} borderWidth={2} />
                   <CardContent className='space-y-5'>
                     <div className='flex items-center gap-3'>
                       <Avatar className='size-10 rounded-full'>
