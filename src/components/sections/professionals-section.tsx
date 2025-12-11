@@ -15,6 +15,7 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel';
 import { Rating } from '@/components/ui/rating';
+import { ShinyText } from '@/components/ui/shiny-text';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -274,7 +275,7 @@ export default function ProfessionalsSection() {
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B6B] to-[#FF3333]">Profissionais</span> que já otimizaram com Smidex Boost
+                <ShinyText text="Profissionais" className="text-transparent bg-gradient-to-r from-[#FF6B6B] to-[#FF3333]" speed={3} /> que já otimizaram com Smidex Boost
               </motion.h2>
               
               <motion.p 
