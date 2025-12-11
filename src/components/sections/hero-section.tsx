@@ -135,7 +135,7 @@ const HeroSection = () => {
                 lightColor="#DC143C"
                 lightWidth={150}
                 duration={8}
-                borderWidth={2}
+                borderWidth={3}
               />
               <div className="flex flex-col items-center justify-center relative z-10">
                 <h2 className="font-display font-bold text-4xl lg:text-5xl text-white mb-2 group-hover:scale-105 transition-transform duration-300">
