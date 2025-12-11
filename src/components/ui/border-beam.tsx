@@ -53,17 +53,13 @@ export function BorderBeam({
       }
       ref={pathRef}
       className={cn(
-        `absolute z-0 h-full w-full rounded-[inherit]`,
-        `after:absolute after:inset-[var(--border-width)] after:rounded-[inherit] after:content-['']`,
-        "border-[length:var(--border-width)] ![mask-clip:padding-box,border-box]",
-        "![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(red,red)]",
-        `before:absolute before:inset-0 before:z-[-1] before:rounded-[inherit] before:border-[length:var(--border-width)] before:border-black/10 dark:before:border-white/10`,
+        `absolute inset-0 z-10 h-full w-full rounded-[inherit] pointer-events-none`,
         className
       )}
       {...props}
     >
       <motion.div
-        className="absolute inset-0 aspect-square bg-[radial-gradient(ellipse_at_center,var(--light-color),transparent,transparent)]"
+        className="absolute aspect-square bg-[radial-gradient(ellipse_at_center,var(--light-color),transparent,transparent)]"
         style={
           {
             "--light-color": lightColor,
