@@ -5,6 +5,16 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Check, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel';
+import { Rating } from '@/components/ui/rating';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -88,27 +98,39 @@ export default function ProfessionalsSection() {
     },
   ];
 
-  const testimonials = [
+  const carouselTestimonials = [
     {
-      user: "Cliente Bravo",
-      msg: "Incrível mano o jogo tá mais rápido e o FPS tá batendo no piko de 300",
-      metric: "300 FPS",
+      name: 'Cliente Bravo',
+      role: 'Gamer',
+      company: 'Smidex',
+      avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png?width=40&height=40&format=auto',
+      rating: 5,
+      content: "Incrível mano o jogo tá mais rápido e o FPS tá batendo no piko de 300"
     },
     {
-      user: "Gamer Pro",
-      msg: "Com os gráficos no médio e a resolução nativa. Só baixei e fui jogar. N mexi em nada.",
-      metric: "Zero Config",
+      name: 'Gamer Pro',
+      role: 'Streamer',
+      company: 'Twitch',
+      avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-2.png?width=40&height=40&format=auto',
+      rating: 5,
+      content: "Com os gráficos no médio e a resolução nativa. Só baixei e fui jogar. N mexi em nada."
     },
     {
-      user: "Cliente Smidex",
-      msg: "Vim opinar sobre o Smidex Boost!! 10/10, excelente, eu tava jogando com fps cravado.",
-      metric: "10/10",
+      name: 'Cliente Smidex',
+      role: 'Pro Player',
+      company: 'eSports',
+      avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png?width=40&height=40&format=auto',
+      rating: 5,
+      content: "Vim opinar sobre o Smidex Boost!! 10/10, excelente, eu tava jogando com fps cravado."
     },
     {
-      user: "Streamer",
-      msg: "O delay realmente diminuiu e a fluidez aumentou e muito. Salvou pra kct.",
-      metric: "Menos Input Lag",
-    },
+      name: 'Streamer',
+      role: 'Content Creator',
+      company: 'YouTube',
+      avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-4.png?width=40&height=40&format=auto',
+      rating: 5,
+      content: "O delay realmente diminuiu e a fluidez aumentou e muito. Salvou pra kct."
+    }
   ];
 
   const nextSlide = () => {
@@ -298,102 +320,71 @@ export default function ProfessionalsSection() {
         </div>
       </section>
 
-      {/* ADDITIONAL TESTIMONIALS / "CLIENTES REAIS" SECTION */}
-      <section className="relative py-16">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            
-            <motion.div 
-              className="lg:pr-10 sticky top-20"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-            >
-              <div className="inline-block border-b-2 border-[#FF3333] pb-1 mb-4">
-                <span className="text-[#D4B0B0] text-sm uppercase tracking-widest font-semibold">O veredito é unânime: menos lag, mais FPS.</span>
-              </div>
-              
-              <motion.h2 
-                className="font-display font-bold text-4xl md:text-5xl leading-tight mb-6 mt-4"
-                variants={fadeInUp}
-                transition={{ duration: 0.6 }}
-              >
-                Clientes Reais.<br/>
-                Performance<br/>
-                Comprovada.
-              </motion.h2>
-              
-              <motion.p 
-                className="text-[#D4B0B0] text-base leading-relaxed mb-8 max-w-md"
-                variants={fadeInUp}
-                transition={{ duration: 0.6 }}
-              >
-                Experiência de alto nível, para jogadores profissionais e casuais. Chegue no seu máximo, sem travamentos.
-              </motion.p>
+      {/* TESTIMONIALS CAROUSEL SECTION */}
+      <section className='py-8 sm:py-16 lg:py-24'>
+        <Carousel
+          className='mx-auto flex max-w-7xl gap-12 px-4 max-sm:flex-col sm:items-center sm:gap-16 sm:px-6 lg:gap-24 lg:px-8'
+          opts={{
+            align: 'start',
+            slidesToScroll: 1
+          }}
+        >
+          <div className='space-y-4 sm:w-1/2 lg:w-1/3'>
+            <p className='text-[#FF3333] text-sm font-medium uppercase'>Clientes Reais</p>
 
-              <button className="bg-[#FF3333] hover:bg-[#D42222] text-[#1A0F0F] font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-[0_4px_20px_rgba(255,51,51,0.3)]">
-                Destrave seu pc agora!
-              </button>
-            </motion.div>
+            <h2 className='text-2xl font-semibold sm:text-3xl lg:text-4xl text-white'>Feedback dos Clientes</h2>
 
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 relative"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={staggerContainer}
-            >
-              <motion.div 
-                className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-[#FF3333] opacity-5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 0.05, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
+            <p className='text-[#D4B0B0] text-xl'>
+              O veredito é unânime: menos lag, mais FPS.
+            </p>
+
+            <div className='flex items-center gap-4'>
+              <CarouselPrevious
+                variant='default'
+                className='disabled:bg-[#FF3333]/10 disabled:text-[#FF3333] static translate-y-0 rounded-md disabled:opacity-100 bg-[#FF3333] hover:bg-[#D42222] text-black'
               />
-              
-              {testimonials.map((t, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className={`relative p-5 rounded-2xl bg-[#2A1414]/80 backdrop-blur-sm border border-[#FF3333]/30 hover:border-[#FF3333] transition-all duration-300 group overflow-hidden ${idx % 2 !== 0 ? 'md:translate-y-12' : ''}`}
-                  variants={scaleIn}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                >
-                  <BorderBeam 
-                    className="inset-0 top-0 left-0"
-                    lightColor="#DC143C"
-                    lightWidth={150}
-                    duration={8}
-                    borderWidth={3}
-                  />
-                  <div className="flex justify-between items-start mb-4 relative z-10">
-                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-[#3A2020] flex items-center justify-center">
-                           <MessageSquare className="w-4 h-4 text-[#FF3333]" />
-                        </div>
-                        <span className="text-xs font-semibold text-[#FF3333] bg-[#FF3333]/10 px-2 py-0.5 rounded-full">WhatsApp</span>
-                     </div>
-                     <span className="text-[10px] text-[#806060]">19:42</span>
-                  </div>
-                  
-                  <div className="bg-[#3A2020] p-3 rounded-lg rounded-tl-none mb-3 inline-block max-w-[90%] relative z-10">
-                     <p className="text-gray-200 text-sm leading-snug">"{t.msg}"</p>
-                  </div>
-
-                  <div className="flex items-center justify-between border-t border-[#3A2020] pt-3 mt-2 relative z-10">
-                     <span className="text-xs font-bold text-white uppercase">{t.user}</span>
-                     <div className="flex items-center gap-1.5">
-                        <Check className="w-3 h-3 text-[#FF3333]" />
-                        <span className="text-xs text-[#FF3333] font-bold">{t.metric}</span>
-                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
+              <CarouselNext
+                variant='default'
+                className='disabled:bg-[#FF3333]/10 disabled:text-[#FF3333] static translate-y-0 rounded-md disabled:opacity-100 bg-[#FF3333] hover:bg-[#D42222] text-black'
+              />
+            </div>
           </div>
-        </div>
+
+          <div className='relative max-w-196 sm:w-1/2 lg:w-2/3'>
+            <CarouselContent className='sm:-ml-6'>
+              {carouselTestimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className='sm:pl-6 lg:basis-1/2'>
+                  <Card className='hover:border-[#FF3333] h-full transition-colors duration-300 bg-[#2A1414] border-[#3A2020]'>
+                    <CardContent className='space-y-5'>
+                      <div className='flex items-center gap-3'>
+                        <Avatar className='size-10 rounded-full'>
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          <AvatarFallback className='rounded-full text-sm bg-[#3A2020] text-white'>
+                            {testimonial.name
+                              .split(' ', 2)
+                              .map(n => n[0])
+                              .join('')}
+                          </AvatarFallback>
+                        </Avatar>
+
+                        <div className='flex-1'>
+                          <h4 className='font-medium text-white'>{testimonial.name}</h4>
+                          <p className='text-[#D4B0B0] text-sm'>
+                            {testimonial.role} at{' '}
+                            <span className='text-[#FF3333] font-semibold'>{testimonial.company}</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <Rating readOnly variant='yellow' size={24} value={testimonial.rating} precision={0.5} />
+                      <p className='text-gray-200'>{testimonial.content}</p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </div>
+        </Carousel>
       </section>
     </div>
   );
