@@ -126,11 +126,12 @@ const HeroSection = () => {
           ].map((stat, index) => (
             <motion.div 
               key={index}
-              className="relative group bg-[#2A1414]/60 backdrop-blur-sm border border-[#3A2020] rounded-2xl p-8 transition-all duration-300 hover:border-[#DC143C]/50 hover:bg-[#2A1414]/80 overflow-hidden"
+              className="relative group bg-[#2A1414]/60 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:bg-[#2A1414]/80 overflow-hidden"
               variants={fadeInUp}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <BorderBeam 
+                className="inset-0 top-0 left-0"
                 lightColor="#DC143C"
                 lightWidth={150}
                 duration={8}
