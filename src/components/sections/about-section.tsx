@@ -64,7 +64,7 @@ const AboutSection = () => {
           whileHover={{ scale: 1.05, rotate: 2 }}
         >
           <Image
-            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765420995505.png?width=8000&height=8000&resize=contain"
+            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425032769.png?width=8000&height=8000&resize=contain"
             alt="Smidex Boost Logo"
             fill
             className="object-contain drop-shadow-xl"

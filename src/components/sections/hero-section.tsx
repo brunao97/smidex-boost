@@ -50,7 +50,7 @@ const HeroSection = () => {
         >
           <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px]">
             <Image 
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1765420995505.png?width=8000&height=8000&resize=contain"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425032769.png?width=8000&height=8000&resize=contain"
               alt="Smidex Boost Logo"
               fill
               className="object-contain"
