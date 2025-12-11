@@ -67,7 +67,7 @@ const AboutSection = () => {
             src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=8000&height=8000&resize=contain"
             alt="Smidex Boost Logo"
             fill
-            className="object-contain drop-shadow-xl"
+            className="object-contain drop-shadow-xl rounded-full"
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority
           />
