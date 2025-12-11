@@ -49,11 +49,15 @@ export function BorderBeam({
         {
           "--duration": duration,
           "--border-width": `${borderWidth}px`,
+          top: `-${borderWidth}px`,
+          left: `-${borderWidth}px`,
+          right: `-${borderWidth}px`,
+          bottom: `-${borderWidth}px`,
         } as CSSProperties
       }
       ref={pathRef}
       className={cn(
-        `absolute inset-0 z-10 h-full w-full rounded-[inherit] pointer-events-none`,
+        `absolute z-10 rounded-[inherit] pointer-events-none`,
         className
       )}
       {...props}
