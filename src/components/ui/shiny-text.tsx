@@ -10,45 +10,39 @@ interface ShinyTextProps {
 }
 
 export function ShinyText({ text, disabled = false, speed = 3, className }: ShinyTextProps) {
-  const animationStyle = `
-    @keyframes shineMove {
-      from {
-        transform: translateX(-100%);
-      }
-      to {
-        transform: translateX(200%);
-      }
-    }
-  `;
-
   return (
-    <>
-      <style>{animationStyle}</style>
-      <span
-        className={cn(
-          'inline-block relative overflow-hidden',
-          className
-        )}
-        style={{
-          color: '#FF3333',
-        }}
-      >
-        {text}
-        {!disabled && (
-          <span
-            className="absolute inset-0 overflow-hidden pointer-events-none"
-            aria-hidden="true"
-          >
-            <span
-              className="absolute inset-0 w-[50%]"
-              style={{
-                background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)',
-                animation: `shineMove ${speed}s ease-in-out infinite`,
-              }}
-            />
-          </span>
-        )}
-      </span>
-    </>
+    <span
+      className={cn(
+        'inline-block relative',
+        className
+      )}
+      style={{
+        color: '#FF3333',
+      }}
+    >
+      {text}
+      {!disabled && (
+        <span
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          aria-hidden="true"
+          style={{
+            WebkitMaskImage: 'linear-gradient(90deg, transparent, white, transparent)',
+            maskImage: 'linear-gradient(90deg, transparent, white, transparent)',
+            WebkitMaskSize: '50% 100%',
+            maskSize: '50% 100%',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            animation: `shimmer ${speed}s linear infinite`,
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
+          }}
+        />
+      )}
+      <style>{`
+        @keyframes shimmer {
+          0% { -webkit-mask-position: -100% 0; mask-position: -100% 0; }
+          100% { -webkit-mask-position: 200% 0; mask-position: 200% 0; }
+        }
+      `}</style>
+    </span>
   );
 }
