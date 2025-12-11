@@ -201,7 +201,7 @@ export default function OfferSection() {
                  </motion.ul>
 
                  <motion.button 
-                   className="w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-display font-bold text-lg py-5 px-8 rounded-xl shadow-[0_4px_20px_rgba(255,51,51,0.3)] hover:shadow-[0_6px_25px_rgba(255,51,51,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase"
+                   className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-display font-bold text-lg py-5 px-8 rounded-xl shadow-[0_4px_20px_rgba(255,51,51,0.3)] hover:shadow-[0_6px_25px_rgba(255,51,51,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase"
                    whileHover={{ scale: 1.02, y: -3 }}
                    whileTap={{ scale: 0.98 }}
                  >

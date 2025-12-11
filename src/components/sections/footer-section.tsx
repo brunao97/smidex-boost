@@ -36,7 +36,7 @@ export default function FooterSection() {
              <Link 
                 href="https://instagram.com" 
                 target="_blank"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
                 aria-label="Instagram"
              >
                 <motion.div whileHover={{ scale: 1.2, rotate: 10 }} transition={{ duration: 0.2 }}>

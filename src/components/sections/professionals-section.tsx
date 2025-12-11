@@ -244,7 +244,7 @@ export default function ProfessionalsSection() {
               <div className="flex gap-2 text-white mt-4">
                 <motion.button 
                   onClick={prevSlide}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
                   aria-label="Previous slide"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -253,7 +253,7 @@ export default function ProfessionalsSection() {
                 </motion.button>
                 <motion.button 
                   onClick={nextSlide}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
                   aria-label="Next slide"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
