@@ -101,9 +101,8 @@ export default function LagProblemSection() {
                 variants={fadeInUp}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <motion.div 
-                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 hover:border-[#FF3333] transition-colors duration-300 group relative overflow-hidden"
-                  whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                <div 
+                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 group relative overflow-hidden"
                 >
                   <BorderBeam 
                     className="inset-0 top-0 left-0"
@@ -113,7 +112,7 @@ export default function LagProblemSection() {
                     borderWidth={3}
                   />
                   <motion.div 
-                    className="p-0 transition-transform duration-300 group-hover:-translate-y-1 relative z-10"
+                    className="p-0 relative z-10"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -127,7 +126,7 @@ export default function LagProblemSection() {
                       {card.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
