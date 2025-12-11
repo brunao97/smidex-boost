@@ -5,6 +5,7 @@ import {
   ProfessionalsSection,
   OfferSection,
   AboutSection,
+  TestimonialsSection,
   FaqSection,
   FooterSection,
 } from "@/components/sections";
@@ -18,6 +19,7 @@ export default function Home() {
       <ProfessionalsSection />
       <OfferSection />
       <AboutSection />
+      <TestimonialsSection />
       <FaqSection />
       <FooterSection />
     </main>
