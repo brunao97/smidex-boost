@@ -1,8 +1,9 @@
 'use client';
 
-import { Gauge, Target, ShieldCheck, Settings } from 'lucide-react';
+import { Target, ShieldCheck, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
+import { SpeedIcon } from '@/components/icons/speed-icon';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -23,7 +24,7 @@ export default function LagProblemSection() {
   const cards = [
     {
       id: 1,
-      icon: <Gauge className="h-12 w-12 text-[#FF3333]" strokeWidth={1.5} />,
+      icon: <SpeedIcon className="h-12 w-12 text-[#FF3333]" strokeWidth={1.5} />,
       title: "FPS no Máximo",
       description:
         "Aumente seus frames por segundo e alcance jogos mais suaves, rápidos e competitivos.",
