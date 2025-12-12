@@ -3,7 +3,7 @@ interface SpeedIconProps {
   strokeWidth?: number;
 }
 
-export function SpeedIcon({ className = "h-12 w-12", strokeWidth = 1.5 }: SpeedIconProps) {
+export function SpeedIcon({ className = "h-12 w-12", strokeWidth = 2.2 }: SpeedIconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -34,31 +34,31 @@ export function SpeedIcon({ className = "h-12 w-12", strokeWidth = 1.5 }: SpeedI
       <path
         d="M7 13L8.5 14"
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.8}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
       <path
         d="M9 10.5L10 11.5"
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.8}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
       <path
         d="M12 9V10"
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.8}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
       <path
         d="M15 10.5L14 11.5"
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.8}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
       <path
         d="M17 13L15.5 14"
         stroke="currentColor"
-        strokeWidth={strokeWidth * 0.8}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
       
@@ -76,7 +76,7 @@ export function SpeedIcon({ className = "h-12 w-12", strokeWidth = 1.5 }: SpeedI
       <circle
         cx="12"
         cy="15"
-        r="1.5"
+        r="2"
         fill="currentColor"
       />
     </svg>
