@@ -251,12 +251,12 @@ export default function GamesSolutionSection() {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#1A0F0F] py-20 lg:py-24 text-white">
+    <section className="relative w-full overflow-hidden bg-[#1A0F0F] py-12 sm:py-16 md:py-20 lg:py-24 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16">
           
           <motion.div 
-            className="w-full lg:w-5/12 mb-12 lg:mb-0"
+            className="w-full lg:w-5/12 mb-8 sm:mb-10 md:mb-12 lg:mb-0"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -264,7 +264,7 @@ export default function GamesSolutionSection() {
           >
             <div className="flex flex-col items-start text-left">
               <motion.p 
-                className="text-[#B0B8D4] font-body text-base lg:text-lg mb-2"
+                className="text-[#B0B8D4] font-body text-sm sm:text-base lg:text-lg mb-2"
                 variants={fadeInLeft}
                 transition={{ duration: 0.5 }}
               >
@@ -272,7 +272,7 @@ export default function GamesSolutionSection() {
               </motion.p>
               
               <motion.div 
-                className="h-[3px] w-24 bg-[#FF3333] mb-6 rounded-full"
+                className="h-[3px] w-20 sm:w-24 bg-[#FF3333] mb-4 sm:mb-6 rounded-full"
                 variants={fadeInLeft}
                 transition={{ duration: 0.5 }}
                 initial={{ width: 0 }}
@@ -281,7 +281,7 @@ export default function GamesSolutionSection() {
               />
               
               <motion.h2 
-                className="font-display font-bold text-4xl lg:text-[2.75rem] leading-[1.2] text-white mb-6"
+                className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.2] text-white mb-4 sm:mb-5 md:mb-6"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
@@ -289,7 +289,7 @@ export default function GamesSolutionSection() {
               </motion.h2>
               
               <motion.p 
-                className="font-body text-[#B0B8D4] text-base leading-relaxed mb-6"
+                className="font-body text-[#B0B8D4] text-sm sm:text-base leading-relaxed mb-4 sm:mb-5 md:mb-6"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
@@ -297,17 +297,17 @@ export default function GamesSolutionSection() {
               </motion.p>
               
               <motion.div 
-                className="mb-8"
+                className="mb-6 sm:mb-8"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
-                <span className="font-body italic text-white text-lg font-medium">
+                <span className="font-body italic text-white text-base sm:text-lg font-medium">
                   Lag não é desculpa. É escolha.
                 </span>
               </motion.div>
               
               <motion.a
-                className="inline-flex items-center justify-center bg-[#FF3333] hover:bg-[#d62b2b] text-white font-semibold rounded-full px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-[0_4px_12px_rgba(255,51,51,0.3)] text-base"
+                className="inline-flex items-center justify-center bg-[#FF3333] hover:bg-[#d62b2b] text-white font-semibold rounded-full px-6 sm:px-8 py-3 sm:py-4 transition-all duration-300 transform hover:scale-105 shadow-[0_4px_12px_rgba(255,51,51,0.3)] text-sm sm:text-base"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.98 }}
@@ -347,7 +347,7 @@ export default function GamesSolutionSection() {
                         alt={game.name}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 180px, 220px"
+                        sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, 220px"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                       <div className="absolute bottom-4 left-4 right-4">
@@ -361,7 +361,7 @@ export default function GamesSolutionSection() {
                   {games.map((game, index) => (
                     <motion.div
                       key={`game-2-${index}`}
-                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[460/215] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
+                      className="relative flex-none w-[140px] sm:w-[180px] md:w-[220px] aspect-[460/215] rounded-lg sm:rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
                     >
                       <BorderBeam
                         className="inset-0 top-0 left-0"
@@ -375,7 +375,7 @@ export default function GamesSolutionSection() {
                         alt={game.name}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 180px, 220px"
+                        sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, 220px"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                     </motion.div>

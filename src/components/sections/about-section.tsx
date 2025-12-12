@@ -39,7 +39,7 @@ const AboutSection = () => {
   return (
     <section className="w-full grid grid-cols-1 lg:grid-cols-2 bg-[#1A0F0F] overflow-hidden">
       <motion.div 
-        className="relative w-full h-[400px] lg:h-auto bg-[#DC143C] flex items-center justify-center p-8"
+        className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-auto bg-[#DC143C] flex items-center justify-center p-6 sm:p-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -55,7 +55,7 @@ const AboutSection = () => {
         />
         
         <motion.div 
-          className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
           variants={scaleIn}
           initial="hidden"
           whileInView="visible"
@@ -68,25 +68,25 @@ const AboutSection = () => {
             alt="Smidex Boost Logo"
             fill
             className="object-contain drop-shadow-xl rounded-full"
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
             priority
           />
         </motion.div>
       </motion.div>
 
       <motion.div 
-        className="flex flex-col justify-center px-6 py-16 md:px-12 lg:p-24 bg-[#1A0F0F] text-white"
+        className="flex flex-col justify-center px-4 sm:px-6 md:px-12 py-12 sm:py-14 md:py-16 lg:p-24 bg-[#1A0F0F] text-white"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
       >
         <motion.div 
-          className="space-y-4 mb-8"
+          className="space-y-3 sm:space-y-4 mb-6 sm:mb-8"
           variants={fadeInUp}
         >
           <motion.h3 
-            className="text-sm md:text-base font-semibold tracking-wider text-[#D4B0B0] font-tertiary uppercase opacity-90"
+            className="text-xs sm:text-sm md:text-base font-semibold tracking-wider text-[#D4B0B0] font-tertiary uppercase opacity-90"
             variants={fadeInUp}
             transition={{ duration: 0.5 }}
           >
@@ -94,7 +94,7 @@ const AboutSection = () => {
           </motion.h3>
           
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white leading-tight"
             variants={fadeInUp}
             transition={{ duration: 0.6 }}
           >
@@ -103,7 +103,7 @@ const AboutSection = () => {
         </motion.div>
 
         <motion.div 
-          className="space-y-6 text-[#D4B0B0] font-body text-base lg:text-lg leading-relaxed"
+          className="space-y-4 sm:space-y-5 md:space-y-6 text-[#D4B0B0] font-body text-sm sm:text-base lg:text-lg leading-relaxed"
           variants={staggerContainer}
         >
           <motion.p variants={fadeInUp} transition={{ duration: 0.5 }}>
@@ -115,18 +115,18 @@ const AboutSection = () => {
         </motion.div>
 
         <motion.div 
-          className="mt-10 pt-8 border-t border-[#3A2020]"
+          className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#3A2020]"
           variants={fadeInUp}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <motion.p 
-            className="text-sm text-[#806060] font-medium leading-relaxed font-body"
+            className="text-xs sm:text-sm text-[#806060] font-medium leading-relaxed font-body"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Sim, somos uma empresa oficial registrada sob o CNPJ <span className="text-[#FF3333] font-bold whitespace-nowrap">46.389.461/0001-07</span>. Com anos de experiência no mercado, garantimos a você a melhor experiência de jogo com total segurança.
+            Sim, somos uma empresa oficial registrada sob o CNPJ <span className="text-[#FF3333] font-bold break-all sm:whitespace-nowrap">46.389.461/0001-07</span>. Com anos de experiência no mercado, garantimos a você a melhor experiência de jogo com total segurança.
           </motion.p>
         </motion.div>
       </motion.div>

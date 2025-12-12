@@ -403,9 +403,9 @@ export default function ProfessionalsSection() {
   }
 
   return (
-    <div className="bg-[#1A0F0F] text-white font-body selection:bg-[#FF3333] selection:text-white pb-32">
+    <div className="bg-[#1A0F0F] text-white font-body selection:bg-[#FF3333] selection:text-white pb-16 sm:pb-24 md:pb-32">
       {/* PROFESSIONAL SECTION */}
-      <section className="relative overflow-hidden py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 sm:py-16 md:py-24">
         <motion.div 
           className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FF3333] opacity-5 blur-[150px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2"
           initial={{ opacity: 0, scale: 0.5 }}
@@ -414,8 +414,8 @@ export default function ProfessionalsSection() {
           transition={{ duration: 1.5 }}
         />
 
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             
             <motion.div 
               className="relative"
@@ -471,21 +471,21 @@ export default function ProfessionalsSection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
 
                         {/* Content Overlay */}
-                        <div className="absolute bottom-0 left-0 w-full p-6">
-                          <div className="text-[#FF3333] text-sm font-semibold mb-1">
+                        <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5 md:p-6">
+                          <div className="text-[#FF3333] text-xs sm:text-sm font-semibold mb-1">
                             {pro.followers}
                           </div>
-                          <h3 className="font-display font-black text-3xl md:text-3xl tracking-wider text-white italic uppercase mb-2">
+                          <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl tracking-wider text-white italic uppercase mb-2">
                             {pro.name}
                           </h3>
                           
-                          <div className="flex items-center gap-2 text-gray-300 text-sm">
+                          <div className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
                              {pro.platform === 'twitch' ? (
-                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]"> 
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF3333]"> 
                                   <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
                                 </svg>
                              ) : (
-                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#FF3333]">
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 sm:w-4 sm:h-4 text-[#FF3333]">
                                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                                 </svg>
                              )}
@@ -493,11 +493,11 @@ export default function ProfessionalsSection() {
                           </div>
                           
                           {/* Pagination Dots visual for card */}
-                          <div className="flex gap-1 mt-4">
+                          <div className="flex gap-1 mt-3 sm:mt-4">
                              {professionals.map((_, dotIndex) => (
                                <div
                                  key={dotIndex}
-                                 className={`w-1.5 h-1.5 rounded-full transition-colors ${dotIndex === currentSlide ? 'bg-white' : 'bg-gray-600'}`}
+                                 className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full transition-colors ${dotIndex === currentSlide ? 'bg-white' : 'bg-gray-600'}`}
                                ></div>
                              ))}
                           </div>
@@ -509,24 +509,24 @@ export default function ProfessionalsSection() {
               </motion.div>
 
               {/* Controls */}
-              <div className="flex gap-2 text-white mt-4 justify-center">
+              <div className="flex gap-2 text-white mt-3 sm:mt-4 justify-center">
                 <motion.button 
                   onClick={prevSlide}
-                  className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  className="cursor-pointer w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
                   aria-label="Previous slide"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ChevronLeft className="w-5 h-5 group-hover:text-black transition-colors" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:text-black transition-colors" />
                 </motion.button>
                 <motion.button 
                   onClick={nextSlide}
-                  className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
+                  className="cursor-pointer w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
                   aria-label="Next slide"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ChevronRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:text-black transition-colors" />
                 </motion.button>
               </div>
             </motion.div>
@@ -539,7 +539,7 @@ export default function ProfessionalsSection() {
               variants={staggerContainer}
             >
               <motion.h2 
-                className="font-display font-bold text-4xl md:text-5xl leading-tight mb-6"
+                className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight mb-4 sm:mb-5 md:mb-6"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
@@ -552,7 +552,7 @@ export default function ProfessionalsSection() {
               </motion.h2>
               
               <motion.p 
-                className="text-[#D4B0B0] text-base md:text-lg leading-relaxed mb-8"
+                className="text-[#D4B0B0] text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-7 md:mb-8"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
@@ -560,7 +560,7 @@ export default function ProfessionalsSection() {
               </motion.p>
 
               <motion.ul 
-                className="space-y-4 mb-8"
+                className="space-y-3 sm:space-y-4 mb-6 sm:mb-7 md:mb-8"
                 variants={staggerContainer}
               >
                ={[
@@ -568,20 +568,20 @@ export default function ProfessionalsSection() {
                   { title: "Estabilidade Profissional", desc: "Zero lag em momentos críticos." },
                   { title: "Foco Total no Jogo", desc: "Seu PC funcionando com a dedicação de um Pro Player." }
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#FF3333] flex items-center justify-center text-black">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  <li key={idx} className="flex items-start gap-2 sm:gap-3">
+                    <div className="mt-0.5 sm:mt-1 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#FF3333] flex items-center justify-center text-black">
+                      <Check className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 stroke-[3]" />
                     </div>
                     <div>
-                      <strong className="text-white block">{item.title}:</strong>
-                      <span className="text-sm text-[#D4B0B0]">{item.desc}</span>
+                      <strong className="text-white block text-sm sm:text-base">{item.title}:</strong>
+                      <span className="text-xs sm:text-sm text-[#D4B0B0]">{item.desc}</span>
                     </div>
                   </li>
                 ))}
               </motion.ul>
 
               <motion.p 
-                className="font-semibold text-white text-lg"
+                className="font-semibold text-white text-base sm:text-lg"
                 variants={fadeInUp}
               >
                 Pronto para o seu Smidex Boost?

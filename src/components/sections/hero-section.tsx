@@ -39,17 +39,17 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-[#1A0F0F]/50 to-[#1A0F0F]"></div>
 
       <motion.div 
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center text-center"
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-20 flex flex-col items-center text-center justify-center min-h-screen"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         <motion.div 
-          className="mb-10"
+          className="mb-6 sm:mb-8 md:mb-10"
           variants={scaleIn}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="relative w-[160px] h-[160px] md:w-[200px] md:h-[200px] group">
+          <div className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] lg:w-[200px] lg:h-[200px] group mx-auto">
             <Image 
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=8000&height=8000&resize=contain"
               alt="Smidex Boost Logo"
@@ -66,13 +66,13 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.h1 
-          className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-8 max-w-5xl"
+          className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.1] mb-4 sm:mb-6 md:mb-8 max-w-5xl px-2"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
           <TextType 
             text={[
-              "Liberte o verdadeiro poder do seu PC",
+              "Liberte o verdadeiro poder do seu",
               "Diga adeus aos travamentos",
               "Aumente seus FPS drasticamente",
               "Performance máxima garantida",
@@ -90,7 +90,7 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.p
-          className="font-body text-[#D4B0B0] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mb-12 py-4 px-4"
+          className="font-body text-[#D4B0B0] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mb-6 sm:mb-8 md:mb-12 py-2 sm:py-4 px-4 sm:px-6"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
@@ -98,19 +98,19 @@ const HeroSection = () => {
         </motion.p>
 
         <motion.div 
-          className="flex flex-col sm:flex-row items-center gap-5 mb-20 w-full justify-center"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-5 mb-8 sm:mb-12 md:mb-20 w-full justify-center px-4"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
           <RippleButton
-            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300 border-none"
+            className="cursor-pointer group relative inline-flex items-center justify-center w-full sm:w-auto min-w-[200px] sm:min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-6 sm:px-8 rounded-full overflow-hidden transition-all duration-300 border-none"
             rippleColor="#ffffff"
           >
-            <span className="relative z-10">Otimizar agora</span>
+            <span className="relative z-10">OTIMIZAR AGORA</span>
           </RippleButton>
 
           <RippleButton
-            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300"
+            className="cursor-pointer group relative inline-flex items-center justify-center w-full sm:w-auto min-w-[200px] sm:min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-6 sm:px-8 rounded-full overflow-hidden transition-all duration-300"
             rippleColor="#DC143C"
           >
             <span className="relative z-10">Falar com especialista</span>
@@ -118,7 +118,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 w-full max-w-5xl px-4"
           variants={staggerContainer}
         >
           {[
@@ -128,7 +128,7 @@ const HeroSection = () => {
           ].map((stat, index) => (
             <motion.div 
               key={index}
-              className="relative group bg-[#2A1414]/60 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:bg-[#2A1414]/80 overflow-hidden"
+              className="relative group bg-[#2A1414]/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 transition-all duration-300 hover:bg-[#2A1414]/80 overflow-hidden"
               variants={fadeInUp}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
@@ -140,10 +140,10 @@ const HeroSection = () => {
                 borderWidth={3}
               />
               <div className="flex flex-col items-center justify-center relative z-10">
-                <h2 className="font-display font-bold text-4xl lg:text-5xl text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-1 sm:mb-2 group-hover:scale-105 transition-transform duration-300">
                   {stat.value}
                 </h2>
-                <span className="font-body text-[#D4B0B0] text-sm uppercase tracking-widest font-semibold group-hover:text-white transition-colors duration-300">
+                <span className="font-body text-[#D4B0B0] text-xs sm:text-sm uppercase tracking-widest font-semibold group-hover:text-white transition-colors duration-300">
                   {stat.label}
                 </span>
               </div>

@@ -56,24 +56,24 @@ export default function LagProblemSection() {
   ];
 
   return (
-    <section className="bg-[#1A0F0F] text-white py-20 px-4 md:px-8 overflow-hidden font-body">
+    <section className="bg-[#1A0F0F] text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden font-body">
       <div className="max-w-[1200px] mx-auto">
         <motion.div 
-          className="flex flex-col gap-6 mb-16 px-4 md:px-0"
+          className="flex flex-col gap-4 sm:gap-5 md:gap-6 mb-10 sm:mb-12 md:mb-16 px-2 sm:px-4 md:px-0"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
         >
           <motion.h3 
-            className="text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight text-white max-w-4xl"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight text-white max-w-4xl"
             variants={fadeInUp}
             transition={{ duration: 0.6 }}
           >
             Cansado de Perder por causa do LAG?
           </motion.h3>
           <motion.p 
-            className="text-gray-300 text-base md:text-lg leading-relaxed max-w-5xl font-normal"
+            className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-5xl font-normal"
             variants={fadeInUp}
             transition={{ duration: 0.6 }}
           >
@@ -88,7 +88,7 @@ export default function LagProblemSection() {
 
         <div className="relative w-full">
           <motion.div 
-            className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-5 md:gap-6 pb-8 sm:pb-10 md:pb-12 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
@@ -97,12 +97,12 @@ export default function LagProblemSection() {
             {cards.map((card, index) => (
               <motion.div
                 key={card.id}
-                className="flex-shrink-0 w-[85%] md:w-[45%] lg:w-[23.5%] snap-start"
+                className="flex-shrink-0 w-[85%] sm:w-[75%] md:w-[45%] lg:w-[23.5%] snap-start"
                 variants={fadeInUp}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div 
-                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-xl p-8 flex flex-col gap-6 group relative overflow-hidden"
+                  className="h-full bg-[#2A1414] border border-[#FF3333]/30 rounded-lg sm:rounded-xl p-5 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-5 md:gap-6 group relative overflow-hidden"
                 >
                   <BorderBeam 
                     className="inset-0 top-0 left-0"
@@ -116,13 +116,15 @@ export default function LagProblemSection() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {card.icon}
+                    <div className="w-10 h-10 sm:w-12 sm:h-12">
+                      {card.icon}
+                    </div>
                   </motion.div>
-                  <div className="flex flex-col gap-4 relative z-10">
-                    <h4 className="text-xl font-bold font-display text-white">
+                  <div className="flex flex-col gap-3 sm:gap-4 relative z-10">
+                    <h4 className="text-lg sm:text-xl font-bold font-display text-white">
                       {card.title}
                     </h4>
-                    <p className="text-[#B0B8D4] text-[15px] leading-relaxed font-body">
+                    <p className="text-[#B0B8D4] text-sm sm:text-[15px] leading-relaxed font-body">
                       {card.description}
                     </p>
                   </div>

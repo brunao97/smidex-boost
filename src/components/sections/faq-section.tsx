@@ -73,37 +73,37 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="bg-[#1A0F0F] py-20 px-4 md:px-8 overflow-hidden relative font-sans text-white border-t border-[#2A1414]">
+    <section className="bg-[#1A0F0F] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden relative font-sans text-white border-t border-[#2A1414]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-start">
           <motion.div 
-            className="lg:col-span-4 flex flex-col gap-8 lg:pt-0"
+            className="lg:col-span-4 flex flex-col gap-6 sm:gap-8 lg:pt-0"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInLeft}
             transition={{ duration: 0.7 }}
           >
-            <div className="flex flex-col gap-6 items-start">
+            <div className="flex flex-col gap-4 sm:gap-6 items-start">
               <motion.div
-                className="bg-[#2A1414] border border-[#3A2020] text-white font-semibold py-6 px-8 rounded-xl w-full text-center lg:text-left shadow-lg"
+                className="bg-[#2A1414] border border-[#3A2020] text-white font-semibold py-4 sm:py-5 md:py-6 px-6 sm:px-8 rounded-lg sm:rounded-xl w-full text-center lg:text-left shadow-lg"
               >
-                <h3 className="text-lg tracking-wide">Perguntas Frequentes</h3>
+                <h3 className="text-base sm:text-lg tracking-wide">Perguntas Frequentes</h3>
               </motion.div>
               
               <motion.button
-                className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-bold text-base py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_4px_12px_rgba(255,51,51,0.2)]"
+                className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-bold text-sm sm:text-base py-3 sm:py-4 px-6 sm:px-8 rounded-full flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 shadow-[0_4px_12px_rgba(255,51,51,0.2)]"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <WhatsAppIcon className="w-6 h-6" />
+                <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 <span>Entrar em contato</span>
               </motion.button>
             </div>
           </motion.div>
 
           <motion.div 
-            className="lg:col-span-8 flex flex-col gap-4"
+            className="lg:col-span-8 flex flex-col gap-3 sm:gap-4"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
@@ -113,7 +113,7 @@ export default function FaqSection() {
               <motion.div 
                 key={index}
                 className={cn(
-                  "bg-[#251010] border rounded-xl overflow-hidden transition-all duration-300 group relative",
+                  "bg-[#251010] border rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 group relative",
                   openItem === index 
                     ? "border-red-500/50 shadow-[0_0_15px_rgba(220,38,38,0.15)] bg-[#2F1414]" 
                     : "border-[#3A2020] hover:border-red-500/30"
@@ -131,23 +131,23 @@ export default function FaqSection() {
                 />
                 <button
                   onClick={() => toggleItem(index)}
-                  className="cursor-pointer w-full flex items-center justify-between p-6 text-left focus:outline-none relative z-10"
+                  className="cursor-pointer w-full flex items-center justify-between p-4 sm:p-5 md:p-6 text-left focus:outline-none relative z-10"
                 >
                   <span className={cn(
-                    "text-lg font-medium pr-8 transition-colors duration-200",
+                    "text-sm sm:text-base md:text-lg font-medium pr-6 sm:pr-8 transition-colors duration-200",
                     openItem === index ? "text-white" : "text-gray-100 group-hover:text-white"
                   )}>
                     {item.question}
                   </span>
                   <motion.div 
                     className={cn(
-                      "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",
+                      "flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300",
                       openItem === index ? "bg-red-600/20 text-red-500" : "bg-[#1A0F0F] text-gray-400 group-hover:text-red-400"
                     )}
                     animate={{ rotate: openItem === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown className="w-5 h-5" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.div>
                 </button>
                 
@@ -160,7 +160,7 @@ export default function FaqSection() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 text-[#D4B0B0] leading-relaxed border-t border-[#3A2020]/50 mt-2">
+                      <div className="p-4 sm:p-5 md:p-6 pt-0 text-sm sm:text-base text-[#D4B0B0] leading-relaxed border-t border-[#3A2020]/50 mt-2">
                         {item.answer}
                       </div>
                     </motion.div>

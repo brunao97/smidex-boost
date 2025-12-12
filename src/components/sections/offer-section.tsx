@@ -61,7 +61,7 @@ export default function OfferSection() {
   }, []);
 
   return (
-    <section className="relative w-full py-20 px-6 bg-[#120505] overflow-hidden">
+    <section className="relative w-full py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-[#120505] overflow-hidden">
       <motion.div 
         className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-950/40 via-[#0e0404] to-[#0A0202] pointer-events-none"
         initial={{ opacity: 0 }}
@@ -73,7 +73,7 @@ export default function OfferSection() {
       <div className="relative z-10 container mx-auto max-w-7xl">
         
         <motion.div 
-          className="text-center mb-16 lg:mb-24"
+          className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-24"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -81,7 +81,7 @@ export default function OfferSection() {
           transition={{ duration: 0.7 }}
         >
           <motion.h2 
-            className="font-display font-bold text-4xl md:text-5xl lg:text-7xl text-white uppercase leading-[1.1] tracking-tight"
+            className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white uppercase leading-[1.1] tracking-tight px-2"
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
@@ -98,10 +98,10 @@ export default function OfferSection() {
           </motion.h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 md:gap-12 lg:gap-20 items-start">
           
           <motion.div 
-            className="lg:col-span-5 flex flex-col space-y-10 pt-4 items-center text-center"
+            className="lg:col-span-5 flex flex-col space-y-6 sm:space-y-8 md:space-y-10 pt-4 items-center text-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -113,31 +113,31 @@ export default function OfferSection() {
               variants={fadeInLeft}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight">
+              <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-white leading-tight">
                 Por Que Aproveitar Agora?
               </h3>
-              <p className="font-display font-bold text-2xl md:text-3xl text-[#FF3333]">
+              <p className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-[#FF3333]">
                 (Seu PC Precisa Disso)
               </p>
             </motion.div>
 
             <motion.div variants={fadeInUp} transition={{ duration: 0.6 }}>
-              <p className="font-body text-gray-400 text-sm font-medium uppercase tracking-wider mb-4">
+              <p className="font-body text-gray-400 text-xs sm:text-sm font-medium uppercase tracking-wider mb-3 sm:mb-4">
                 Oferta expira em:
               </p>
               
-              <div className="flex items-center justify-center gap-3 md:gap-4">
+              <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
                 <TimerBlock value={timeLeft.hours} label="horas" delay={0} />
                 <TimerBlock value={timeLeft.minutes} label="min" delay={0.1} />
                 <TimerBlock value={timeLeft.seconds} label="seg" delay={0.2} />
               </div>
 
               <motion.div 
-                className="mt-8"
+                className="mt-6 sm:mt-8"
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
               >
-                 <p className="font-body text-white text-base leading-relaxed opacity-90 max-w-lg">
+                 <p className="font-body text-white text-sm sm:text-base leading-relaxed opacity-90 max-w-lg px-2">
                     Esta é a sua chance de aplicar a otimização de alta precisão da <span className="text-[#FF3333] font-semibold">Smidex Boost</span> com um desconto imperdível. Garanta a estabilidade, fluidez e FPS que você sempre quis, antes que o tempo acabe!
                   </p>
               </motion.div>
@@ -153,7 +153,7 @@ export default function OfferSection() {
             transition={{ duration: 0.7 }}
           >
             <motion.div 
-              className="bg-[#1A1A1A] border border-[#331111] rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
+              className="bg-[#1A1A1A] border border-[#331111] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 shadow-2xl relative overflow-hidden"
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
             >
@@ -174,7 +174,7 @@ export default function OfferSection() {
 
                <div className="relative z-10">
                  <motion.h3 
-                   className="font-display font-bold text-2xl md:text-3xl text-white mb-8"
+                   className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-white mb-6 sm:mb-8"
                    initial={{ opacity: 0, y: 20 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    viewport={{ once: true }}
@@ -184,7 +184,7 @@ export default function OfferSection() {
                  </motion.h3>
 
                  <motion.ul 
-                   className="space-y-5 mb-10"
+                   className="space-y-3 sm:space-y-4 md:space-y-5 mb-6 sm:mb-8 md:mb-10"
                    initial="hidden"
                    whileInView="visible"
                    viewport={{ once: true }}
@@ -200,7 +200,7 @@ export default function OfferSection() {
                  </motion.ul>
 
                  <motion.button 
-                   className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-display font-bold text-lg py-5 px-8 rounded-xl shadow-[0_4px_20px_rgba(255,51,51,0.3)] hover:shadow-[0_6px_25px_rgba(255,51,51,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase"
+                   className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-display font-bold text-sm sm:text-base md:text-lg py-4 sm:py-5 px-6 sm:px-8 rounded-xl shadow-[0_4px_20px_rgba(255,51,51,0.3)] hover:shadow-[0_6px_25px_rgba(255,51,51,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase"
                    whileHover={{ scale: 1.02, y: -3 }}
                    whileTap={{ scale: 0.98 }}
                  >
@@ -218,14 +218,14 @@ export default function OfferSection() {
 
 const TimerBlock = ({ value, label, delay = 0 }: { value: number; label: string; delay?: number }) => (
   <motion.div 
-    className="flex flex-col items-center justify-center gap-2"
+    className="flex flex-col items-center justify-center gap-1 sm:gap-2"
     initial={{ opacity: 0, y: 20, scale: 0.9 }}
     whileInView={{ opacity: 1, y: 0, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
   >
     <motion.div 
-      className="w-20 h-20 md:w-28 md:h-28 bg-[#0D0505] border border-[#2A1111] rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden group"
+      className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 bg-[#0D0505] border border-[#2A1111] rounded-lg sm:rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden group"
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
     >
@@ -238,12 +238,12 @@ const TimerBlock = ({ value, label, delay = 0 }: { value: number; label: string;
       />
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
       <NumberFlow 
-        className="font-display font-bold text-4xl md:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm relative z-10"
+        className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm relative z-10"
         value={value}
         format={{ minimumIntegerDigits: 2, minimumFractionDigits: 0 }}
       />
     </motion.div>
-    <span className="text-xs md:text-sm font-body text-gray-500 font-medium uppercase tracking-wide">
+    <span className="text-xs sm:text-sm font-body text-gray-500 font-medium uppercase tracking-wide">
       {label}
     </span>
   </motion.div>
@@ -251,21 +251,21 @@ const TimerBlock = ({ value, label, delay = 0 }: { value: number; label: string;
 
 const BenefitItem = ({ title, description }: { title: string; description: string }) => (
   <motion.li 
-    className="flex items-start gap-4 group"
+    className="flex items-start gap-3 sm:gap-4 group"
     variants={fadeInUp}
     transition={{ duration: 0.4 }}
   >
-    <div className="mt-1 flex-shrink-0">
+    <div className="mt-0.5 sm:mt-1 flex-shrink-0">
       <motion.div 
-        className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#FF3333] flex items-center justify-center shadow-[0_0_10px_rgba(255,51,51,0.3)]"
+        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full bg-[#FF3333] flex items-center justify-center shadow-[0_0_10px_rgba(255,51,51,0.3)]"
         whileHover={{ scale: 1.2 }}
         transition={{ duration: 0.2 }}
       >
-        <CheckIcon className="w-3 h-3 md:w-4 md:h-4 text-white stroke-[4]" />
+        <CheckIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-white stroke-[4]" />
       </motion.div>
     </div>
     <div className="flex-1">
-      <p className="font-body text-sm md:text-[15px] leading-relaxed text-gray-300">
+      <p className="font-body text-xs sm:text-sm md:text-[15px] leading-relaxed text-gray-300">
         <span className="text-white font-bold">{title}</span> <span>{description}</span>
       </p>
     </div>

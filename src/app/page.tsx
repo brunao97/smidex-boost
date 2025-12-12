@@ -17,11 +17,11 @@ import { motion } from "framer-motion";
 
 function FloatingSocialButtons() {
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <FloatingButton
         triggerContent={
-          <button className="flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 text-[#FF3333]">
-            <Plus className="w-6 h-6" />
+          <button className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 text-[#FF3333]">
+            <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         }
       >
