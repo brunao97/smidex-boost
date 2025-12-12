@@ -145,8 +145,7 @@ export default function GamesSolutionSection() {
                 </span>
               </motion.div>
               
-              <motion.a 
-                href="#otimizar" 
+              <motion.a
                 className="inline-flex items-center justify-center bg-[#FF3333] hover:bg-[#d62b2b] text-white font-semibold rounded-full px-8 py-4 transition-all duration-300 transform hover:scale-105 shadow-[0_4px_12px_rgba(255,51,51,0.3)] text-base"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -3 }}

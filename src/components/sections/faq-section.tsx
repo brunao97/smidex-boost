@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
@@ -92,20 +91,14 @@ export default function FaqSection() {
                 <h3 className="text-lg tracking-wide">Perguntas Frequentes</h3>
               </motion.div>
               
-              <Link 
-                href="https://api.whatsapp.com/send/?phone=5566999236481&text&type=phone_number&app_absent=0" 
-                target="_blank"
-                className="w-full group"
+              <motion.button
+                className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-bold text-base py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_4px_12px_rgba(255,51,51,0.2)]"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <motion.button 
-                  className="cursor-pointer w-full bg-[#FF3333] hover:bg-[#d62626] text-white font-bold text-base py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_4px_12px_rgba(255,51,51,0.2)]"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <WhatsAppIcon className="w-6 h-6" />
-                  <span>Entrar em contato</span>
-                </motion.button>
-              </Link>
+                <WhatsAppIcon className="w-6 h-6" />
+                <span>Entrar em contato</span>
+              </motion.button>
             </div>
           </motion.div>
 

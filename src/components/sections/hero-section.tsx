@@ -7,6 +7,7 @@ import Hyperspeed from '@/components/Hyperspeed';
 import { hyperspeedPresets } from '@/components/HyperSpeedPresets';
 import TextType from '@/components/TextType';
 import { BorderBeam } from '@/components/ui/border-beam';
+import { RippleButton } from '@/components/ui/ripple-button';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -101,23 +102,19 @@ const HeroSection = () => {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          <motion.a 
-            href="#planos"
-            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(220,20,60,0.6)] hover:bg-[#ff1f4b] hover:-translate-y-1"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+          <RippleButton
+            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300 border-none"
+            rippleColor="#ffffff"
           >
             <span className="relative z-10">Otimizar agora</span>
-          </motion.a>
+          </RippleButton>
           
-          <motion.a 
-            href="https://api.whatsapp.com/send/?phone=5566999236481"
-            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300 hover:bg-[#DC143C] hover:text-white hover:shadow-[0_0_20px_rgba(220,20,60,0.4)] hover:-translate-y-1"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+          <RippleButton
+            className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300"
+            rippleColor="#DC143C"
           >
             <span className="relative z-10">Falar com especialista</span>
-          </motion.a>
+          </RippleButton>
         </motion.div>
 
         <motion.div 

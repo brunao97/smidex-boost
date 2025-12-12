@@ -28,7 +28,6 @@ export default function RealClientsSection() {
 
             <div className="pt-2">
               <a
-                href="#"
                 className="inline-block bg-[#FF3333] hover:bg-[#D62828] text-white font-body font-semibold text-base py-4 px-10 rounded-full shadow-[0_4px_20px_rgba(255,51,51,0.3)] hover:shadow-[0_6px_25px_rgba(255,51,51,0.4)] transition-all transform hover:-translate-y-1 duration-300"
               >
                 Destrave seu pc agora!
