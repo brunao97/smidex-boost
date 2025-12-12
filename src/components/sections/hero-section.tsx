@@ -91,7 +91,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.h1 
-          className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.1] mb-4 sm:mb-6 md:mb-8 max-w-5xl px-2"
+          className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.1] mb-4 sm:mb-6 md:mb-8 max-w-5xl px-2 min-h-[2.2em] sm:min-h-[2.2em] md:min-h-[2.2em] lg:min-h-[2.2em]"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
