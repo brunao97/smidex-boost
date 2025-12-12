@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
+import NumberFlow from '@number-flow/react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -58,8 +59,6 @@ export default function OfferSection() {
 
     return () => clearInterval(timer);
   }, []);
-
-  const formatTime = (num: number) => num.toString().padStart(2, '0');
 
   return (
     <section className="relative w-full py-20 px-6 bg-[#120505] overflow-hidden">
@@ -128,9 +127,9 @@ export default function OfferSection() {
               </p>
               
               <div className="flex items-center justify-center gap-3 md:gap-4">
-                <TimerBlock value={formatTime(timeLeft.hours)} label="horas" delay={0} />
-                <TimerBlock value={formatTime(timeLeft.minutes)} label="min" delay={0.1} />
-                <TimerBlock value={formatTime(timeLeft.seconds)} label="seg" delay={0.2} />
+                <TimerBlock value={timeLeft.hours} label="horas" delay={0} />
+                <TimerBlock value={timeLeft.minutes} label="min" delay={0.1} />
+                <TimerBlock value={timeLeft.seconds} label="seg" delay={0.2} />
               </div>
 
               <motion.div 
@@ -217,7 +216,7 @@ export default function OfferSection() {
   );
 }
 
-const TimerBlock = ({ value, label, delay = 0 }: { value: string; label: string; delay?: number }) => (
+const TimerBlock = ({ value, label, delay = 0 }: { value: number; label: string; delay?: number }) => (
   <motion.div 
     className="flex flex-col items-center justify-center gap-2"
     initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -238,9 +237,11 @@ const TimerBlock = ({ value, label, delay = 0 }: { value: string; label: string;
         borderWidth={2}
       />
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-      <span className="font-display font-bold text-4xl md:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm relative z-10">
-        {value}
-      </span>
+      <NumberFlow 
+        className="font-display font-bold text-4xl md:text-6xl text-[#FF3333] tabular-nums tracking-tight drop-shadow-sm relative z-10"
+        value={value}
+        format={{ minimumIntegerDigits: 2, minimumFractionDigits: 0 }}
+      />
     </motion.div>
     <span className="text-xs md:text-sm font-body text-gray-500 font-medium uppercase tracking-wide">
       {label}
