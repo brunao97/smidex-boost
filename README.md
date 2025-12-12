@@ -133,7 +133,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 - **WhatsApp**: [](https://api.whatsapp.com/send/?phone=)
 - **Email**: brunoolivio1@gmail.com
-- **GitHub**: [@brunao97](https://github.com/brunao97)
+- **GitHub**: [@brunao97](https://github.com/brunao97) | [Smidex Boost](https://github.com/brunao97/smidex-boost)
 
 ---
 
