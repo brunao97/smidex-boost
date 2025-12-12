@@ -89,8 +89,8 @@ const HeroSection = () => {
           />
         </motion.h1>
 
-        <motion.p 
-          className="font-body text-[#D4B0B0] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mb-12"
+        <motion.p
+          className="font-body text-[#D4B0B0] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mb-12 py-4 px-4"
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >

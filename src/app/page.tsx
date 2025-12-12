@@ -20,12 +20,12 @@ function FloatingSocialButtons() {
     <div className="fixed bottom-6 right-6 z-50">
       <FloatingButton
         triggerContent={
-          <button className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FF3333] hover:bg-[#FF3333]/90 transition-all duration-300 text-white">
+          <button className="flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 text-[#FF3333]">
             <Plus className="w-6 h-6" />
           </button>
         }
       >
-        <FloatingButtonItem>
+        <FloatingButtonItem key="whatsapp">
           <div
             className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full bg-transparent hover:bg-[#FF3333]/10 transition-all duration-300 group"
             aria-label="WhatsApp"
@@ -35,7 +35,7 @@ function FloatingSocialButtons() {
             </svg>
           </div>
         </FloatingButtonItem>
-        <FloatingButtonItem>
+        <FloatingButtonItem key="instagram">
           <div
             className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full bg-transparent hover:bg-[#FF3333]/10 transition-all duration-300 group"
             aria-label="Instagram"

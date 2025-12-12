@@ -51,6 +51,7 @@ function FloatingButton({ className, children, triggerContent }: FloatingButtonP
     <div className="flex flex-col items-center relative">
       <AnimatePresence>
         <motion.ul
+          key="floating-menu"
           className="flex flex-col items-center absolute bottom-14 gap-2"
           initial="hidden"
           animate={isOpen ? 'visible' : 'hidden'}
@@ -58,6 +59,7 @@ function FloatingButton({ className, children, triggerContent }: FloatingButtonP
           {children}
         </motion.ul>
         <motion.div
+          key="floating-button"
           variants={btn}
           animate={isOpen ? 'visible' : 'hidden'}
           ref={ref}
