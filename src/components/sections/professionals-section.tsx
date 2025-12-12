@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Check, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
@@ -16,6 +16,197 @@ import {
 } from '@/components/ui/carousel';
 import { Rating } from '@/components/ui/rating';
 import ShinyText from '@/components/ShinyText';
+
+// Cache para profissionais gerados
+const PROFESSIONALS_CACHE_KEY = 'professionals_cache';
+const CACHE_DURATION_DAYS = 7; // Atualizar a cada semana
+
+interface Professional {
+  id: number;
+  name: string;
+  followers: string;
+  image: string;
+  social: string;
+  platform: 'twitch' | 'youtube';
+  twitchUrl?: string;
+  youtubeUrl?: string;
+}
+
+// Função para gerar nome de streamer brasileiro aleatório
+const generateStreamerName = (): string => {
+  const prefixes = ['BR_', 'PRO_', 'KING_', 'MASTER_', 'GAMER_', 'GG_', 'ACE_', 'TOP_', 'BEST_', 'ELITE_'];
+  const names = ['SILVER', 'GOLD', 'DIAMOND', 'PLATINUM', 'RUBY', 'SAPPHIRE', 'EMERALD', 'ONYX', 'CRYSTAL', 'TITANIUM'];
+  const suffixes = ['BR', 'PRO', 'GG', 'ACE', 'GOD', 'KING', 'MASTER', 'BOSS', 'LEGEND', 'CHAMP'];
+
+  const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+  const name = names[Math.floor(Math.random() * names.length)];
+  const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+
+  return Math.random() > 0.3 ? `${prefix}${name}` : `${prefix}${name}${suffix}`;
+};
+
+// Função para gerar seguidores aleatórios
+const generateFollowers = (): string => {
+  const amounts = [
+    '+50K de seguidores',
+    '+75K de seguidores',
+    '+100K de seguidores',
+    '+150K de seguidores',
+    '+200K de seguidores',
+    '+250K de seguidores',
+    '+300K de seguidores',
+    '+400K de seguidores',
+    '+500K de seguidores',
+    '+750K de seguidores',
+    '1M+ de seguidores',
+    '1.2M+ de seguidores',
+    '1.5M+ de seguidores',
+    '2M+ de seguidores'
+  ];
+  return amounts[Math.floor(Math.random() * amounts.length)];
+};
+
+// Função para buscar profissionais aleatórios
+const fetchRandomProfessionals = async (): Promise<Professional[]> => {
+  try {
+    console.log('🎭 Gerando profissionais aleatórios...');
+
+    // Buscar 10 pessoas aleatórias da API
+    const response = await fetch('https://randomuser.me/api/?results=10&nat=br&gender=male');
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Gerar profissionais baseados nos dados aleatórios
+    const professionals: Professional[] = data.results.map((user: any, index: number) => {
+      const streamerName = generateStreamerName();
+      const followers = generateFollowers();
+      const platform = Math.random() > 0.3 ? 'twitch' : 'youtube';
+
+      return {
+        id: index + 1,
+        name: streamerName,
+        followers: followers,
+        image: user.picture.large,
+        social: streamerName.toLowerCase(),
+        platform: platform,
+        twitchUrl: platform === 'twitch' ? '#' : undefined,
+        youtubeUrl: platform === 'youtube' ? '#' : undefined,
+      };
+    });
+
+    console.log('✅ Profissionais gerados:', professionals.length);
+    return professionals;
+
+  } catch (error) {
+    console.error('❌ Erro ao gerar profissionais:', error);
+
+    // Fallback com profissionais estáticos
+    return [
+      {
+        id: 1,
+        name: generateStreamerName(),
+        followers: generateFollowers(),
+        image: "https://randomuser.me/api/portraits/men/32.jpg",
+        social: "streamer1",
+        platform: "twitch",
+        twitchUrl: "#",
+      },
+      {
+        id: 2,
+        name: generateStreamerName(),
+        followers: generateFollowers(),
+        image: "https://randomuser.me/api/portraits/men/75.jpg",
+        social: "streamer2",
+        platform: "youtube",
+        youtubeUrl: "#",
+      },
+      {
+        id: 3,
+        name: generateStreamerName(),
+        followers: generateFollowers(),
+        image: "https://randomuser.me/api/portraits/men/44.jpg",
+        social: "streamer3",
+        platform: "twitch",
+        twitchUrl: "#",
+      },
+      {
+        id: 4,
+        name: generateStreamerName(),
+        followers: generateFollowers(),
+        image: "https://randomuser.me/api/portraits/men/22.jpg",
+        social: "streamer4",
+        platform: "twitch",
+        twitchUrl: "#",
+      },
+      {
+        id: 5,
+        name: generateStreamerName(),
+        followers: generateFollowers(),
+        image: "https://randomuser.me/api/portraits/men/67.jpg",
+        social: "streamer5",
+        platform: "twitch",
+        twitchUrl: "#",
+      },
+    ];
+  }
+};
+
+// Hook para gerenciar cache de profissionais
+const useProfessionalsCache = () => {
+  const [professionals, setProfessionals] = useState<Professional[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfessionals = async () => {
+      try {
+        // Verificar cache
+        const cached = localStorage.getItem(PROFESSIONALS_CACHE_KEY);
+
+        if (cached) {
+          const { professionals: cachedPros, timestamp } = JSON.parse(cached);
+          const daysSinceUpdate = (Date.now() - timestamp) / (1000 * 60 * 60 * 24);
+
+          // Se cache é válido (menos de 7 dias), usar dados cacheados
+          if (daysSinceUpdate < CACHE_DURATION_DAYS) {
+            console.log('📦 Usando profissionais do cache (', Math.round(daysSinceUpdate), 'dias atrás)');
+            setProfessionals(cachedPros);
+            setIsLoading(false);
+            return;
+          }
+        }
+
+        // Cache expirado ou inexistente, gerar novos profissionais
+        console.log('🎲 Cache expirado, gerando novos profissionais...');
+        const freshPros = await fetchRandomProfessionals();
+
+        // Salvar no cache
+        const cacheData = {
+          professionals: freshPros,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(PROFESSIONALS_CACHE_KEY, JSON.stringify(cacheData));
+
+        setProfessionals(freshPros);
+
+      } catch (error) {
+        console.error('Erro ao carregar profissionais:', error);
+        // Em caso de erro, gerar profissionais locais
+        const fallbackPros = await fetchRandomProfessionals();
+        setProfessionals(fallbackPros);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProfessionals();
+  }, []);
+
+  return { professionals, isLoading };
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -66,54 +257,7 @@ const slideVariants = {
 export default function ProfessionalsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
-
-  const professionals = [
-    {
-      id: 1,
-      name: "FROGMANI",
-      followers: "+200K de seguidores",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      social: "/Frogman1",
-      platform: "twitch",
-      twitchUrl: "#",
-    },
-    {
-      id: 2,
-      name: "SKIPNHO",
-      followers: "1.3M+ de seguidores",
-      image: "https://randomuser.me/api/portraits/men/75.jpg",
-      social: "skipnho",
-      platform: "youtube",
-      youtubeUrl: "#",
-    },
-    {
-      id: 3,
-      name: "DILERA",
-      followers: "+500K de seguidores",
-      image: "https://randomuser.me/api/portraits/men/44.jpg",
-      social: "dilera",
-      platform: "twitch",
-      twitchUrl: "#",
-    },
-    {
-      id: 4,
-      name: "LAND1N",
-      followers: "+400K de seguidores",
-      image: "https://randomuser.me/api/portraits/men/22.jpg",
-      social: "land1n",
-      platform: "twitch",
-      twitchUrl: "#",
-    },
-    {
-      id: 5,
-      name: "SHAPP2K",
-      followers: "+300K de seguidores",
-      image: "https://randomuser.me/api/portraits/men/67.jpg",
-      social: "shapp2k",
-      platform: "twitch",
-      twitchUrl: "#",
-    },
-  ];
+  const { professionals, isLoading } = useProfessionalsCache();
 
   const carouselTestimonials = [
     {
@@ -151,11 +295,13 @@ export default function ProfessionalsSection() {
   ];
 
   const nextSlide = () => {
+    if (professionals.length === 0) return;
     setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % professionals.length);
   };
 
   const prevSlide = () => {
+    if (professionals.length === 0) return;
     setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + professionals.length) % professionals.length);
   };
@@ -170,11 +316,48 @@ export default function ProfessionalsSection() {
   };
 
   const getVisiblePros = () => {
+    if (professionals.length === 0) return [];
+
     // Show 2 cards on desktop (looping)
     const card1 = professionals[currentSlide];
     const card2 = professionals[(currentSlide + 1) % professionals.length];
     return [card1, card2];
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="bg-[#1A0F0F] text-white font-body selection:bg-[#FF3333] selection:text-white pb-32">
+        <section className="relative overflow-hidden py-16 md:py-24">
+          <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="relative">
+                <div className="flex gap-4 overflow-hidden">
+                  {[1, 2].map((index) => (
+                    <div key={index} className="relative w-full md:w-1/2 flex-shrink-0">
+                      <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-[#2A1414] bg-[#2A1414] animate-pulse">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
+                        <div className="absolute bottom-0 left-0 w-full p-6">
+                          <div className="h-4 bg-gray-600 rounded mb-2"></div>
+                          <div className="h-8 bg-gray-600 rounded mb-2"></div>
+                          <div className="h-4 bg-gray-600 rounded w-2/3"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col justify-center">
+                <h2 className="font-display font-bold text-4xl md:text-5xl leading-tight mb-6 text-white">
+                  Carregando profissionais...
+                </h2>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#1A0F0F] text-white font-body selection:bg-[#FF3333] selection:text-white pb-32">
@@ -269,7 +452,7 @@ export default function ProfessionalsSection() {
                           {/* Pagination Dots visual for card */}
                           <div className="flex gap-1 mt-4">
                              {professionals.map((_, dotIndex) => (
-                               <div 
+                               <div
                                  key={dotIndex}
                                  className={`w-1.5 h-1.5 rounded-full transition-colors ${dotIndex === currentSlide ? 'bg-white' : 'bg-gray-600'}`}
                                ></div>
