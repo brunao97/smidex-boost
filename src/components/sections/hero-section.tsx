@@ -128,14 +128,14 @@ const HeroSection = () => {
           transition={{ duration: 0.6 }}
         >
           <RippleButton
-            className="cursor-pointer group relative inline-flex items-center justify-center w-full sm:w-auto min-w-[200px] sm:min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-6 sm:px-8 rounded-full overflow-hidden transition-all duration-300 border-none"
+            className="cursor-pointer group relative inline-flex items-center justify-center w-auto max-w-[280px] sm:w-auto sm:max-w-none min-w-[180px] sm:min-w-[220px] bg-[#DC143C] text-white font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-5 sm:px-8 rounded-full overflow-hidden transition-all duration-300 border-none"
             rippleColor="#ffffff"
           >
             <span className="relative z-10">OTIMIZAR AGORA</span>
           </RippleButton>
 
           <RippleButton
-            className="cursor-pointer group relative inline-flex items-center justify-center w-full sm:w-auto min-w-[200px] sm:min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-6 sm:px-8 rounded-full overflow-hidden transition-all duration-300"
+            className="cursor-pointer group relative inline-flex items-center justify-center w-auto max-w-[280px] sm:w-auto sm:max-w-none min-w-[180px] sm:min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-xs sm:text-sm uppercase tracking-wider py-3 sm:py-4 px-5 sm:px-8 rounded-full overflow-hidden transition-all duration-300"
             rippleColor="#DC143C"
           >
             <span className="relative z-10">Falar com especialista</span>
