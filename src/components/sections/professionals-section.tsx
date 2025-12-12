@@ -283,7 +283,7 @@ export default function ProfessionalsSection() {
               </motion.div>
 
               {/* Controls */}
-              <div className="flex gap-2 text-white mt-4 justify-center md:justify-start">
+              <div className="flex gap-2 text-white mt-4 justify-center">
                 <motion.button 
                   onClick={prevSlide}
                   className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-lg bg-[#2A1414] border border-[#3A2020] hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"

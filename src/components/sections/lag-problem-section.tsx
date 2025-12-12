@@ -111,13 +111,9 @@ export default function LagProblemSection() {
                     duration={8}
                     borderWidth={3}
                   />
-                  <motion.div 
-                    className="p-0 relative z-10"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <div className="p-0 relative z-10">
                     {card.icon}
-                  </motion.div>
+                  </div>
                   <div className="flex flex-col gap-4 relative z-10">
                     <h4 className="text-xl font-bold font-display text-white">
                       {card.title}
