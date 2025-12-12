@@ -72,11 +72,11 @@ const HeroSection = () => {
         >
           <TextType 
             text={[
-              "Desperte o poder real do seu PC",
-              "Elimine travamentos de vez",
-              "Aumente seus FPS nos jogos",
+              "Liberte o verdadeiro poder do seu PC",
+              "Diga adeus aos travamentos",
+              "Aumente seus FPS drasticamente",
               "Performance máxima garantida",
-              "Seu PC como nunca viu antes"
+              "Seu PC em outro nível"
             ]}
             typingSpeed={50}
             deletingSpeed={30}
@@ -94,7 +94,7 @@ const HeroSection = () => {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          O único serviço de otimização com <span className="text-[#FF3333] font-bold">garantia real</span> e <span className="text-[#FF3333] font-bold">suporte especializado</span>. Acelere jogos, reduza travamentos e recupere desempenho.
+          O único serviço de otimização com <span className="text-[#FF3333] font-bold">garantia real</span> e <span className="text-[#FF3333] font-bold">suporte especializado</span>. Acelere seus jogos, elimine travamentos e recupere o desempenho perdido.
         </motion.p>
 
         <motion.div 
@@ -123,7 +123,7 @@ const HeroSection = () => {
         >
           {[
             { value: "5k+", label: "PCs otimizados" },
-            { value: "+50%", label: "FPS médio" },
+            { value: "+50%", label: "Mais FPS" },
             { value: "Suporte", label: "Garantido" }
           ].map((stat, index) => (
             <motion.div 

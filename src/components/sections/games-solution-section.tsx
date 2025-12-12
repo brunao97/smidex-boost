@@ -1,9 +1,120 @@
 'use client';
 
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
+
+// Cache key para armazenar jogos da Steam
+const STEAM_GAMES_CACHE_KEY = 'steam_top_games_cache';
+const CACHE_DURATION_DAYS = 30; // Atualizar a cada 30 dias
+
+interface SteamGame {
+  name: string;
+  src: string;
+  width: number;
+  height: number;
+}
+
+// Função para buscar jogos mais jogados da Steam API
+const fetchTopSteamGames = async (): Promise<SteamGame[]> => {
+  try {
+    console.log('🔄 Buscando jogos mais jogados da Steam...');
+    const response = await fetch('https://steamapi.xpaw.me/api/mostplayed');
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Filtrar apenas jogos (remover ferramentas como Wallpaper Engine)
+    const gamesOnly = data.filter((game: any) =>
+      game.name &&
+      !game.name.toLowerCase().includes('engine') &&
+      !game.name.toLowerCase().includes('tool') &&
+      game.appid
+    );
+
+    const topGames = gamesOnly.slice(0, 12).map((game: any) => ({
+      name: game.name,
+      src: `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`,
+      width: 460,
+      height: 215
+    }));
+
+    console.log('✅ Jogos atualizados:', topGames.length);
+    return topGames;
+
+  } catch (error) {
+    console.error('❌ Erro ao buscar jogos da Steam:', error);
+    // Em caso de erro, o hook vai usar o cache ou a lista estática
+    throw error;
+  }
+};
+
+// Hook para gerenciar cache e atualização automática
+const useSteamGamesCache = () => {
+  const [games, setGames] = useState<SteamGame[]>(GAME_ASSETS);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadGames = async () => {
+      try {
+        // Verificar cache
+        const cached = localStorage.getItem(STEAM_GAMES_CACHE_KEY);
+
+        if (cached) {
+          const { games: cachedGames, timestamp } = JSON.parse(cached);
+          const daysSinceUpdate = (Date.now() - timestamp) / (1000 * 60 * 60 * 24);
+
+          // Se cache é válido (menos de 30 dias), usar dados cacheados
+          if (daysSinceUpdate < CACHE_DURATION_DAYS) {
+            console.log('📦 Usando jogos do cache (', Math.round(daysSinceUpdate), 'dias atrás)');
+            setGames(cachedGames);
+            setIsLoading(false);
+            return;
+          }
+        }
+
+        // Cache expirado ou inexistente, buscar novos dados
+        console.log('⏰ Cache expirado, buscando jogos atualizados...');
+        const freshGames = await fetchTopSteamGames();
+
+        // Salvar no cache
+        const cacheData = {
+          games: freshGames,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(STEAM_GAMES_CACHE_KEY, JSON.stringify(cacheData));
+
+        setGames(freshGames);
+
+      } catch (error) {
+        console.error('Erro ao carregar jogos da API:', error);
+        console.log('🔄 Usando lista estática como fallback');
+
+        // Se não há cache válido e API falhou, usar lista estática
+        // Mas ainda salvar no cache para tentar novamente na próxima vez
+        const cacheData = {
+          games: GAME_ASSETS,
+          timestamp: Date.now() // Não esperar 30 dias para tentar API novamente
+        };
+        localStorage.setItem(STEAM_GAMES_CACHE_KEY, JSON.stringify(cacheData));
+
+        setGames(GAME_ASSETS);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadGames();
+  }, []);
+
+  return { games, isLoading };
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -31,64 +142,114 @@ const staggerContainer = {
   }
 };
 
+// Lista diversificada de jogos evergreen e atuais
+// Por que não usar ranking dinâmico dos mais jogados?
+// - Rankings mudam constantemente (novos lançamentos, eventos sazonais)
+// - Jogos evergreen garantem consistência visual
+// - Evita que imagens quebrem se jogos saírem do top
+// - Melhor experiência do usuário com jogos reconhecíveis
 const GAME_ASSETS = [
-  { 
-    name: "DayZ", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/dz-8.webp",
-    width: 300,
-    height: 400
+  // Jogos evergreen (sempre populares)
+  {
+    name: "Counter-Strike 2",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Counter-Strike 2", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/cs2-9.jpg",
-    width: 300,
-    height: 400
+  {
+    name: "Dota 2",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Valorant", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/val-10.jpg",
-    width: 300,
-    height: 400
+  {
+    name: "Grand Theft Auto V",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "FC 24", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/fc24-11.jpg",
-    width: 300,
-    height: 400
+  {
+    name: "Team Fortress 2",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Call of Duty MW", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/COD-MW-19.webp",
-    width: 300,
-    height: 400
+
+  // Jogos atuais populares
+  {
+    name: "Apex Legends",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "GTA V", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/gtav-15.png",
-    width: 300,
-    height: 400
+  {
+    name: "ELDEN RING",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Rainbow Six", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/r6-13.webp",
-    width: 300,
-    height: 400
+  {
+    name: "Rust",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/252490/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Apex Legends", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/apex-2.jpg",
-    width: 300,
-    height: 400
+  {
+    name: "PUBG: BATTLEGROUNDS",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg",
+    width: 460,
+    height: 215
   },
-  { 
-    name: "Fortnite", 
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d-bravoboost-com-br/assets/images/fn-14.jpg",
-    width: 300,
-    height: 400
+
+  // Jogos clássicos icônicos
+  {
+    name: "Portal 2",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg",
+    width: 460,
+    height: 215
+  },
+  {
+    name: "The Witcher 3",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",
+    width: 460,
+    height: 215
+  },
+  {
+    name: "Sid Meier's Civilization VI",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg",
+    width: 460,
+    height: 215
+  },
+  {
+    name: "Euro Truck Simulator 2",
+    src: "https://cdn.cloudflare.steamstatic.com/steam/apps/227300/header.jpg",
+    width: 460,
+    height: 215
   },
 ];
 
 export default function GamesSolutionSection() {
+  const { games, isLoading } = useSteamGamesCache();
+
+  // Mostrar loading state se necessário
+  if (isLoading) {
+    return (
+      <section className="relative w-full overflow-hidden bg-[#1A0F0F] py-20 lg:py-24 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16">
+            <div className="w-full lg:w-5/12 mb-12 lg:mb-0">
+              <div className="flex flex-col items-start text-left">
+                <p className="text-[#B0B8D4] font-body text-base lg:text-lg mb-2">
+                  Carregando jogos...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-full overflow-hidden bg-[#1A0F0F] py-20 lg:py-24 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -169,12 +330,12 @@ export default function GamesSolutionSection() {
             
             <div className="flex overflow-hidden group select-none mask-linear-fade">
               <div className="flex animate-scroll hover:pause-scroll gap-6 pl-6">
-                {GAME_ASSETS.map((game, index) => (
-                    <motion.div 
-                      key={`game-1-${index}`} 
-                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
+                {games.map((game, index) => (
+                    <motion.div
+                      key={`game-1-${index}`}
+                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[460/215] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
                     >
-                      <BorderBeam 
+                      <BorderBeam
                         className="inset-0 top-0 left-0"
                         lightColor="#DC143C"
                         lightWidth={150}
@@ -196,13 +357,13 @@ export default function GamesSolutionSection() {
                       </div>
                     </motion.div>
                   ))}
-                  
-                  {GAME_ASSETS.map((game, index) => (
-                    <motion.div 
-                      key={`game-2-${index}`} 
-                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[3/4] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
+
+                  {games.map((game, index) => (
+                    <motion.div
+                      key={`game-2-${index}`}
+                      className="relative flex-none w-[180px] sm:w-[220px] aspect-[460/215] rounded-xl overflow-hidden border border-[#3A2020] shadow-lg"
                     >
-                      <BorderBeam 
+                      <BorderBeam
                         className="inset-0 top-0 left-0"
                         lightColor="#DC143C"
                         lightWidth={150}
