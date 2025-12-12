@@ -110,14 +110,11 @@ const HeroSection = () => {
             <span className="relative z-10">Otimizar agora</span>
           </motion.a>
           
-          <motion.a 
-            href="https://api.whatsapp.com/send/?phone=5566999236481"
+          <motion.div 
             className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300 hover:bg-[#DC143C] hover:text-white hover:shadow-[0_0_20px_rgba(220,20,60,0.4)] hover:-translate-y-1"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
           >
             <span className="relative z-10">Falar com especialista</span>
-          </motion.a>
+          </motion.div>
         </motion.div>
 
         <motion.div 
