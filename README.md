@@ -131,7 +131,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 📞 Contato
 
-- **WhatsApp**: [+55 66 9923-6481](https://api.whatsapp.com/send/?phone=5566999236481)
+- **WhatsApp**: [](https://api.whatsapp.com/send/?phone=)
 - **Email**: brunoolivio1@gmail.com
 - **GitHub**: [@brunao97](https://github.com/brunao97)
 

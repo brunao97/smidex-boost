@@ -1,0 +1,246 @@
+﻿Diagnose log at 2025-12-12T16:27:20Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.6.1+786ab03440ddc82e807a97c0e540f5247e44cec6
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 22631)
+Reading environment variables... OK
+ Variables:
+_=C:/Program Files/Git/mingw64/bin/git
+VBOX_MSI_INSTALL_PATH=H:\virtualbox\
+AMDRMPATH=C:\Program Files\AMD\RyzenMaster\
+TFSSDKDir=C:\Windows\System32
+PUBLIC=C:\Users\Public
+TOPAZLABS_LICENSE=C:\ProgramData\Topaz Labs LLC\Topaz Video AI\models\VR.lic
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL=1
+ALLUSERSPROFILE=C:\ProgramData
+LOGONSERVER=\\DESKTOP-H4KNHS9
+WINDIR=C:\Windows
+LOCALAPPDATA=C:\Users\bruno\AppData\Local
+ProgramData=C:\ProgramData
+TMPDIR=C:\Users\bruno\AppData\Local\Temp
+VCPKG_ROOT=H:\tibia-novos\10.98\Otclient 1098\vcpkg
+EnableLog=INFO
+PROCESSOR_REVISION=2102
+ACSvcPort=17532
+ProgramW6432=C:\Program Files
+OLLAMA_MODELS=G:\Ollama
+RlsSvcPort=22112
+SYSTEMROOT=C:\Windows
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+_ZO_DOCTOR=0
+python=H:\Python313
+MSYSTEM=MINGW64
+POSH_THEMES_PATH=C:\Users\bruno\AppData\Local\Programs\oh-my-posh\themes\
+OS=Windows_NT
+PROCESSOR_ARCHITECTURE=x86
+SHLVL=1
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+VSCODE_L10N_BUNDLE_LOCATION=
+VSCODE_CWD=C:\Users\bruno\AppData\Local\Programs\cursor
+FORCE_COLOR=0
+PNPM_HOME=C:\Users\bruno\AppData\Local\pnpm
+CommonProgramW6432=C:\Program Files\Common Files
+ProgramFiles(x86)=C:\Program Files (x86)
+COMSPEC=C:\Windows\system32\cmd.exe
+GOPATH=C:\Users\bruno\go
+USERNAME=Bruno
+CURSOR_AGENT=1
+VSCODE_IPC_HOOK=\\.\pipe\b35165a9-2.2.20-main-sock
+TERM=dumb
+ORIGINAL_XDG_CURRENT_DESKTOP=undefined
+CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8
+GIGAPIXEL_MODEL_DIR=C:\ProgramData\Topaz Labs LLC\Topaz Gigapixel AI\models
+PATH=C:/Program Files/Git/mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\bruno\bin;C:\Program Files\NVIDIA\CUDNN\v9.8\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\libnvvp;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python313\Scripts;C:\Python313;C:\Users\bruno\.cargo\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\libnvvp;C:\Program Files\Eclipse Adoptium\jdk-21.0.5.11-hotspot\bin;C:\Users\bruno\AppData\Local\Programs\cursor\resources\app\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\AtlasModules;C:\Windows\AtlasModules\Apps;C:\Windows\AtlasModules\Other;C:\Windows\AtlasModules\Tools;C:\Windows\AtlasModules\Scripts;C:\ProgramData\chocolatey\bin;C:\Users\bruno\AppData\Local\Programs\Python\Launcher;C:\Users\bruno\AppData\Local\Microsoft\WindowsApps;C:\Users\bruno\AppData\Roaming\npm;C:\Users\bruno\AppData\Local\spicetify;C:\Users\bruno\AppData\Local\Programs\Ollama;C:\Users\bruno\AppData\Local\Programs\Windsurf\bin;C:\Users\bruno\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files (x86)\Bitvise SSH Client;C:\Program Files (x86)\GnuPG\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\documentdb-jdbc-schema-cli-x86\runtime\bin\server;C:\Python313;C:\Program Files\NVIDIA Corporation\Nsight Compute 2025.1.1;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Go\bin;C:\Program Files\PuTTY;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit;C:\Program Files\Git LFS;C:\Program Files\CMake\bin;C:\Users\bruno\AppData\Local\Programs\oh-my-posh\bin;C:\Program Files\NVIDIA\CUDNN\v9.8\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\libnvvp;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python313\Scripts;C:\Python313;C:\Users\bruno\.cargo\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\libnvvp;C:\Program Files\Eclipse Adoptium\jdk-21.0.5.11-hotspot\bin;C:\Users\bruno\AppData\Local\Programs\cursor\resources\app\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\AtlasModules;C:\Windows\AtlasModules\Apps;C:\Windows\AtlasModules\Other;C:\Windows\AtlasModules\Tools;C:\Windows\AtlasModules\Scripts;C:\ProgramData\chocolatey\bin;C:\Users\bruno\AppData\Local\Programs\Python\Launcher;C:\Users\bruno\.dotnet\tools;C:\Users\bruno\.lmstudio\bin;C:\Users\bruno\AppData\Local\Programs\Ollama;C:\Users\bruno\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\bruno\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bruno\AppData\Local\Programs\Antigravity\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin;C:\Users\bruno\.bun\bin
+NO_COLOR=1
+BOOST_ROOT_OTCLIENT=C:\boost_1_89_0
+CURSOR_STATE_INPUT_FILE=C:/Users/bruno/AppData/Local/Temp/cursor-bash-state-1gtli0/state-in
+PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+ACSetupSvcPort=23210
+pyhton h=H:\Python313
+VSCODE_HANDLES_UNCAUGHT_ERRORS=true
+ChocolateyInstall=C:\ProgramData\chocolatey
+CURSOR_TRACE_ID=142a56301e544d81a83ed6ceb2d0da64
+FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer
+COMPUTERNAME=DESKTOP-H4KNHS9
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+APPLICATIONINSIGHTS_CONFIGURATION_CONTENT={}
+FPS_BROWSER_USER_PROFILE_STRING=Default
+CURSOR_STATE_OUTPUT_FILE=C:/Users/bruno/AppData/Local/Temp/cursor-bash-state-1gtli0/state-out
+php=C:\xampp\php
+ChocolateyLastPathUpdate=133704080684688928
+PLINK_PROTOCOL=ssh
+CUDA_PATH_V12_6=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6
+PROCESSOR_LEVEL=25
+EXEPATH=C:\Program Files\Git\bin
+HOMEDRIVE=C:
+EFC_4640=1
+CUDA_PATH_V12_8=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8
+PROGRAMFILES=C:\Program Files (x86)
+USERPROFILE=C:\Users\bruno
+VSCODE_DOTNET_INSTALL_TOOL_ORIGINAL_HOME=undefined
+VSCODE_CRASH_REPORTER_PROCESS_TYPE=extensionHost
+LC_CTYPE=C.UTF-8
+LOG_LEVEL=info
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD
+OneDrive=C:\Users\bruno\OneDrive
+LOG_DST=c:\Users\bruno\AppData\Roaming\Cursor\logs\20251212T132023\window1\exthost\dendron.dendron\dendron.log
+SESSIONNAME=Console
+TMP=C:\Users\bruno\AppData\Local\Temp
+VSCODE_PROCESS_TITLE=extension-host  [1-1]
+DriverData=C:\Windows\System32\Drivers\DriverData
+APPDATA=C:\Users\bruno\AppData\Roaming
+USERDOMAIN=DESKTOP-H4KNHS9
+NUMBER_OF_PROCESSORS=16
+OTCLIENTSDKDir=H:\tibia-novos\10.98\Otclient 1098\vcpkg\installed\x64-windows-static
+CHROME_CRASHPAD_PIPE_NAME=\\.\pipe\crashpad_34340_YUNPKLGUXENAIDJW
+SYSTEMDRIVE=C:
+PWD=H:/Dev Projetos/orchids-bravo-boost-clone
+USERDOMAIN_ROAMINGPROFILE=DESKTOP-H4KNHS9
+asl.log=Destination=file
+COMMONPROGRAMFILES=C:\Program Files (x86)\Common Files
+GIT_TRACE2_PARENT_SID=0f88f45a-bd8a-43a7-a52f-acfc2f852d82
+VSCODE_NLS_CONFIG={"userLocale":"en-us","osLocale":"pt-br","resolvedLanguage":"en","defaultMessagesFile":"C:\\Users\\bruno\\AppData\\Local\\Programs\\cursor\\resources\\app\\out\\nls.messages.json","locale":"en-us","availableLanguages":{}}
+VSCODE_ESM_ENTRYPOINT=vs/workbench/api/node/extensionHostProcess
+HOMEPATH=\Users\bruno
+POSH_INSTALLER=manual
+VSCODE_PID=34340
+HOME=C:\Users\bruno
+GIT_LFS_PATH=C:\Program Files\Git LFS
+PROCESSOR_ARCHITEW6432=AMD64
+TEMP=C:\Users\bruno\AppData\Local\Temp
+BOOST_ROOT=C:\boost_1_66_0
+VSCODE_CODE_CACHE_PATH=C:\Users\bruno\AppData\Roaming\Cursor\CachedData\b3573281c4775bfc6bba466bf6563d3d498d1070
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\bruno\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\bruno\AppData\Local\Temp\871a47e58d64c32e0f13d167'... OK
+Reading from temporary file 'C:\Users\bruno\AppData\Local\Temp\871a47e58d64c32e0f13d167'... OK
+Deleting temporary file 'C:\Users\bruno\AppData\Local\Temp\871a47e58d64c32e0f13d167'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\bruno
+UserDataDirectoryPath: C:\Users\bruno\.gcm
+GetCurrentDirectory(): h:\Dev Projetos\orchids-bravo-boost-clone
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:60554/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.48.1.windows.1'
+Locating current repository...Git repository at 'H:/Dev Projetos/orchids-bravo-boost-clone/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=openssl
+file:C:/Program Files/Git/etc/gitconfig	http.sslcainfo=C:/Program Files/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=false
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	credential.helper=manager
+file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/bruno/.gitconfig	user.name=Bruno Olivio
+file:C:/Users/bruno/.gitconfig	user.email=78575850+brunao97@users.noreply.github.com
+file:C:/Users/bruno/.gitconfig	user.signingkey=F1F4E8D67DE54D5B
+file:C:/Users/bruno/.gitconfig	credential.https://huggingface.co.provider=generic
+file:C:/Users/bruno/.gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Users/bruno/.gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Users/bruno/.gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Users/bruno/.gitconfig	filter.lfs.required=true
+file:C:/Users/bruno/.gitconfig	credential.https://orchids.code.storage.provider=generic
+file:C:/Users/bruno/.gitconfig	credential.helper=
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	user.name=brunao97
+file:.git/config	user.email=brunoolivio1@gmail.com
+file:.git/config	remote.github-integ.url=https://github.com/brunao97/smidex-boost.git
+file:.git/config	remote.github-integ.fetch=+refs/heads/*:refs/remotes/github-integ/*
+file:.git/config	remote.orchids-sync.url=https://t:eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcmNoaWRzIiwic3ViIjoiQHBpZXJyZS9zdG9yYWdlIiwicmVwbyI6ImMxZTI5YzhkLWZlMTgtNDMyZi05MWNjLWU4MTdmOGVlM2Y4ZCIsInNjb3BlcyI6WyJnaXQ6cmVhZCIsImdpdDp3cml0ZSJdLCJpYXQiOjE3NjU1MDA3NTQsImV4cCI6MTc5NjYwNDc1NH0.i-VTxKPN_hZhdvaldPFCfka6gxVCBuZOPSzm_F0s4cNBGA9O9tlCm0BHFGGy4v-y4neuTH9gAcEqHfTgAHOC9A@orchids.code.storage/c1e29c8d-fe18-432f-91cc-e817f8ee3f8d.git
+file:.git/config	remote.orchids-sync.fetch=+refs/heads/*:refs/remotes/orchids-sync/*
+file:.git/config	branch.main.remote=github-integ
+file:.git/config	branch.main.merge=refs/heads/main
+file:.git/config	branch.main.vscode-merge-base=github-integ/main
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\bruno\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\bruno\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+
