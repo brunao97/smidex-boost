@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Smidex Boost - Otimização de PC para Jogos
 
-## Getting Started
+Uma landing page moderna e responsiva para serviço de otimização de PC, desenvolvida com Next.js, TypeScript e Tailwind CSS. Especializada em melhorar performance de jogos, eliminar travamentos e maximizar FPS.
 
-First, run the development server:
+## ✨ Características
 
+- **🎮 Otimização de Jogos**: Melhore drasticamente o desempenho dos seus jogos
+- **⚡ Performance Máxima**: Elimine travamentos e aumente seus FPS
+- **🎯 Interface Moderna**: Design responsivo com animações suaves
+- **📱 Mobile-First**: Funciona perfeitamente em todos os dispositivos
+- **🔧 Suporte Especializado**: Atendimento personalizado para gamers
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework**: [Next.js 15](https://nextjs.org/) com App Router
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animações**: [Framer Motion](https://www.framer.com/motion/)
+- **Componentes UI**: [Radix UI](https://www.radix-ui.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Icones**: [Lucide React](https://lucide.dev/)
+- **3D/Visual**: [Three.js](https://threejs.org/) + [Postprocessing](https://pmndrs.github.io/postprocessing/)
+- **Runtime**: [Bun](https://bun.sh/) (recomendado)
+
+## 🚀 Começando
+
+### Pré-requisitos
+
+- [Bun](https://bun.sh/) (recomendado) ou [Node.js](https://nodejs.org/) 18+
+- [Git](https://git-scm.com/)
+
+### Instalação
+
+1. **Clone o repositório:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/brunao97/smidex-boost.git
+cd smidex-boost
+```
+
+2. **Instale as dependências:**
+```bash
+bun install
+```
+
+3. **Execute o servidor de desenvolvimento:**
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Abra [http://localhost:3000](http://localhost:3000) no seu navegador**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estrutura do Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # Estilos globais
+│   ├── layout.tsx         # Layout principal
+│   └── page.tsx           # Página inicial
+├── components/
+│   ├── sections/          # Seções da landing page
+│   │   ├── hero-section.tsx
+│   │   ├── about-section.tsx
+│   │   ├── faq-section.tsx
+│   │   └── ...
+│   ├── ui/               # Componentes reutilizáveis
+│   └── ...
+└── lib/
+    └── utils.ts          # Utilitários
+```
 
-## Learn More
+## 🎨 Componentes Principais
 
-To learn more about Next.js, take a look at the following resources:
+- **Hero Section**: Apresentação com efeito de digitação
+- **Games Solution**: Soluções para problemas de jogos
+- **Professionals Section**: Depoimentos e estatísticas
+- **FAQ Section**: Perguntas frequentes
+- **Footer**: Informações de contato
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Scripts Disponíveis
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Desenvolvimento
+bun dev
 
-## Deploy on Vercel
+# Build para produção
+bun build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Iniciar servidor de produção
+bun start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Lint do código
+bun lint
+```
+
+## 🎯 Funcionalidades
+
+- ✅ Design responsivo e moderno
+- ✅ Animações suaves com Framer Motion
+- ✅ Efeitos visuais 3D
+- ✅ Formulários interativos
+- ✅ Carrossel de depoimentos
+- ✅ FAQ expansível
+- ✅ Botões com efeito ripple
+
+## 🚀 Deploy
+
+### Vercel (Recomendado)
+
+1. Conecte seu repositório no [Vercel](https://vercel.com)
+2. Configure as variáveis de ambiente se necessário
+3. Deploy automático a cada push
+
+### Outras Plataformas
+
+O projeto pode ser deployado em qualquer plataforma que suporte Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie sua branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 📞 Contato
+
+- **WhatsApp**: [+55 66 9923-6481](https://api.whatsapp.com/send/?phone=5566999236481)
+- **Email**: brunoolivio1@gmail.com
+- **GitHub**: [@brunao97](https://github.com/brunao97)
+
+---
+
+**Feito com ❤️ para gamers que querem o máximo desempenho do seu PC**
