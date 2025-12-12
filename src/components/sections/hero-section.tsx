@@ -108,7 +108,7 @@ const HeroSection = () => {
           >
             <span className="relative z-10">Otimizar agora</span>
           </RippleButton>
-          
+
           <RippleButton
             className="cursor-pointer group relative inline-flex items-center justify-center min-w-[220px] bg-transparent border-2 border-[#DC143C] text-[#DC143C] font-body font-bold text-sm uppercase tracking-wider py-4 px-8 rounded-full overflow-hidden transition-all duration-300"
             rippleColor="#DC143C"
