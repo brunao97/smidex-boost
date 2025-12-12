@@ -97,17 +97,17 @@ const HeroSection = () => {
         >
           <TextType 
             text={[
-              "Liberte o verdadeiro poder do seu",
-              "Diga adeus aos travamentos",
-              "Aumente seus FPS drasticamente",
-              "Performance máxima garantida",
-              "Seu PC em outro nível"
+              "Liberte o verdadeiro poder do seu PC",
+              "Diga adeus aos travamentos e lag",
+              "Aumente seus FPS de forma real",
+              "Performance máxima com garantia",
+              "Seu PC funcionando no máximo"
             ]}
             typingSpeed={50}
             deletingSpeed={30}
             pauseDuration={2500}
             loop={true}
-            className="text-white"
+            className="text-white break-words"
             showCursor={true}
             cursorCharacter="_"
             cursorClassName="text-[#DC143C]"

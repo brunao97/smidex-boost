@@ -175,9 +175,10 @@ const TextType = ({
     {
       ref: containerRef,
       className: `inline-block tracking-tight ${className}`,
+      style: { wordBreak: 'break-word', overflowWrap: 'break-word', ...props.style },
       ...props
     },
-    <span className="inline" style={{ color: getCurrentTextColor() || 'inherit' }}>
+    <span className="inline break-words" style={{ color: getCurrentTextColor() || 'inherit', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
       {displayedText}
     </span>,
     showCursor && (
