@@ -36,7 +36,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <Hyperspeed effectOptions={hyperspeedPresets.akira} />
       </div>
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-[#1A0F0F]/30 md:via-[#1A0F0F]/50 to-[#1A0F0F]/80 md:to-[#1A0F0F]"></div>
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-[#1A0F0F]/50 to-[#1A0F0F]"></div>
 
       <motion.div 
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center text-center"
@@ -123,13 +123,14 @@ const HeroSection = () => {
         >
           {[
             { value: "5k+", label: "PCs otimizados" },
-            { value: "+50%", label: "Aumento de FPS" },
-            { value: "24/7", label: "Suporte especializado" }
+            { value: "+50%", label: "Mais FPS" },
+            { value: "Suporte", label: "Garantido" }
           ].map((stat, index) => (
             <motion.div 
               key={index}
-              className="relative bg-[#2A1414]/60 backdrop-blur-sm rounded-2xl p-8 overflow-hidden"
+              className="relative group bg-[#2A1414]/60 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:bg-[#2A1414]/80 overflow-hidden"
               variants={fadeInUp}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <BorderBeam 
                 className="inset-0 top-0 left-0"
@@ -139,10 +140,10 @@ const HeroSection = () => {
                 borderWidth={3}
               />
               <div className="flex flex-col items-center justify-center relative z-10">
-                <h2 className="font-display font-bold text-4xl lg:text-5xl text-white mb-2">
+                <h2 className="font-display font-bold text-4xl lg:text-5xl text-white mb-2 group-hover:scale-105 transition-transform duration-300">
                   {stat.value}
                 </h2>
-                <span className="font-body text-[#D4B0B0] text-sm uppercase tracking-widest font-semibold">
+                <span className="font-body text-[#D4B0B0] text-sm uppercase tracking-widest font-semibold group-hover:text-white transition-colors duration-300">
                   {stat.label}
                 </span>
               </div>

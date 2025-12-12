@@ -174,10 +174,10 @@ const TextType = ({
     Component,
     {
       ref: containerRef,
-      className: `inline-block whitespace-normal md:whitespace-nowrap tracking-tight ${className}`,
+      className: `inline-block whitespace-nowrap tracking-tight ${className}`,
       ...props
     },
-    <span className="inline whitespace-normal md:whitespace-nowrap" style={{ color: getCurrentTextColor() || 'inherit' }}>
+    <span className="inline whitespace-nowrap" style={{ color: getCurrentTextColor() || 'inherit' }}>
       {displayedText}
     </span>,
     showCursor && (
