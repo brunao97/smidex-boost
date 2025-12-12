@@ -11,8 +11,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious
+  type CarouselApi
 } from '@/components/ui/carousel';
 import { Rating } from '@/components/ui/rating';
 import ShinyText from '@/components/ShinyText';
@@ -257,7 +256,19 @@ const slideVariants = {
 export default function ProfessionalsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const { professionals, isLoading } = useProfessionalsCache();
+
+  // Movimento automático do carousel a cada 5 segundos
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const interval = setInterval(() => {
+      carouselApi.scrollNext();
+    }, 5000); // 5 segundos
+
+    return () => clearInterval(interval);
+  }, [carouselApi]);
 
   const carouselTestimonials = [
     {
@@ -557,6 +568,7 @@ export default function ProfessionalsSection() {
             align: 'start',
             slidesToScroll: 1
           }}
+          setApi={setCarouselApi}
         >
           <div className='space-y-4 sm:w-1/2 lg:w-1/3'>
             <p className='text-[#FF3333] text-sm font-medium uppercase'>Clientes Reais</p>
@@ -567,16 +579,6 @@ export default function ProfessionalsSection() {
               O veredito é unânime: menos lag, mais FPS.
             </p>
 
-            <div className='flex items-center gap-4'>
-              <CarouselPrevious
-                variant='default'
-                className='disabled:bg-[#FF3333]/10 disabled:text-[#FF3333] static translate-y-0 rounded-md disabled:opacity-100 bg-[#FF3333] hover:bg-[#D42222] text-black'
-              />
-              <CarouselNext
-                variant='default'
-                className='disabled:bg-[#FF3333]/10 disabled:text-[#FF3333] static translate-y-0 rounded-md disabled:opacity-100 bg-[#FF3333] hover:bg-[#D42222] text-black'
-              />
-            </div>
           </div>
 
           <div className='relative max-w-196 sm:w-1/2 lg:w-2/3'>

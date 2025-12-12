@@ -8,9 +8,11 @@ export default function SuppressParamsWarning() {
     console.error = (...args: any[]) => {
       if (
         typeof args[0] === 'string' &&
-        args[0].includes('params are being enumerated')
+        (args[0].includes('params are being enumerated') ||
+         args[0].includes('searchParams') ||
+         args[0].includes('React.use()'))
       ) {
-        return; // Suprimir este aviso específico
+        return; // Suprimir avisos relacionados a params e searchParams
       }
       originalError.apply(console, args);
     };
