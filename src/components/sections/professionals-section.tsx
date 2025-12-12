@@ -302,6 +302,38 @@ export default function ProfessionalsSection() {
       avatar: 'https://randomuser.me/api/portraits/men/91.jpg',
       rating: 5,
       content: "O delay realmente diminuiu e a fluidez aumentou e muito. Salvou pra kct."
+    },
+    {
+      name: 'Player Casual',
+      role: 'Gamer',
+      company: 'Steam',
+      avatar: 'https://randomuser.me/api/portraits/women/45.jpg',
+      rating: 3,
+      content: "Funcionou bem, mas esperava mais. Melhorou um pouco o desempenho."
+    },
+    {
+      name: 'Novato',
+      role: 'Iniciante',
+      company: 'Epic Games',
+      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      rating: 2,
+      content: "Não vi muita diferença, talvez precise configurar melhor."
+    },
+    {
+      name: 'Experiente',
+      role: 'Veterano',
+      company: 'Battle.net',
+      avatar: 'https://randomuser.me/api/portraits/women/28.jpg',
+      rating: 4,
+      content: "Bom produto, ajudou bastante. Recomendo para quem tem PC mais fraco."
+    },
+    {
+      name: 'Testador',
+      role: 'Beta Tester',
+      company: 'Discord',
+      avatar: 'https://randomuser.me/api/portraits/men/67.jpg',
+      rating: 3,
+      content: "Funcional, mas poderia ter mais opções de customização."
     }
   ];
 

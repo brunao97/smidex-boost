@@ -44,6 +44,8 @@ interface RatingItemProps extends React.ComponentProps<'label'> {
   onMouseLeave: React.MouseEventHandler<HTMLLabelElement>
   onValueHover: (value: number) => void
   onValueChange?: (value: number) => void
+  starIndex?: number
+  filledStarsCount?: number
 }
 
 interface RatingProps extends React.ComponentProps<'div'> {
@@ -76,6 +78,8 @@ function RatingItem({
   onValueChange,
   onValueHover,
   className,
+  starIndex,
+  filledStarsCount = 0,
   ...props
 }: RatingItemProps) {
   const Comp = readOnly ? 'span' : 'label'
@@ -86,6 +90,18 @@ function RatingItem({
   const isPartialPoint = partialPoint !== 0
   const shouldShowFilled = (hoveredValue || value) >= point
   const partialPointWidth = isPartialPoint && shouldShowFilled ? `${partialPoint * 100}%` : undefined
+  
+  // Calculate animation delay for shiny effect (from left to right)
+  // The leftmost filled star (lowest index) should animate first
+  // Only apply animation to fully filled stars (not partial points)
+  // starIndex is only set for the last point of each star (representing the complete star)
+  const isFilledStar = shouldShowFilled && !isPartialPoint && starIndex !== undefined
+  const starPosition = starIndex !== undefined ? starIndex : -1
+  // Calculate delay: leftmost filled star (lowest index) = 0s, rightmost = highest delay
+  // Duration of each star animation is ~0.2s, so spacing them by 0.15s creates overlap
+  const animationDelay = isFilledStar && filledStarsCount > 0 && starPosition >= 0
+    ? `${starPosition * 0.15}s` 
+    : '0s'
 
   const icons = React.useMemo(() => {
     const emptyIcon = React.cloneElement(Icon, {
@@ -99,12 +115,16 @@ function RatingItem({
 
     const fullIcon = React.cloneElement(Icon, {
       size,
-      className: cn(ratingVariants({ variant })),
+      className: cn(
+        ratingVariants({ variant }),
+        isFilledStar && readOnly && 'animate-[star-shine-sequence_2s_ease-in-out_infinite]'
+      ),
+      style: isFilledStar && readOnly ? { animationDelay } : undefined,
       'aria-hidden': 'true'
     })
 
     return { emptyIcon, fullIcon }
-  }, [Icon, size, variant])
+  }, [Icon, size, variant, isFilledStar, readOnly, animationDelay])
 
   const getRatingPoint = React.useCallback(
     (event: React.MouseEvent<HTMLLabelElement>) => {
@@ -160,7 +180,9 @@ function RatingItem({
           disabled && 'cursor-not-allowed opacity-50',
           className
         )}
-        style={{ width: partialPointWidth }}
+        style={{ 
+          width: partialPointWidth,
+        }}
         {...props}
       >
         {!isPartialPoint && !shouldShowFilled && icons.emptyIcon}
@@ -296,6 +318,11 @@ function Rating({
     }))
   }, [max, precision])
 
+  // Calculate number of filled stars for animation sequencing
+  const filledStarsCount = React.useMemo(() => {
+    return Math.ceil(value)
+  }, [value])
+
   return (
     <div
       data-slot='rating'
@@ -329,24 +356,30 @@ function Rating({
           aria-disabled={disabled}
           aria-hidden={readOnly}
         >
-          {points.map(point => (
-            <RatingItem
-              key={point}
-              name={ratingName}
-              disabled={disabled}
-              hoveredValue={hoveredValue}
-              point={point}
-              precision={precision}
-              readOnly={readOnly}
-              size={size}
-              value={value}
-              variant={variant}
-              Icon={Icon}
-              onMouseLeave={() => setHoveredValue(0)}
-              onValueHover={handleValueHover}
-              onValueChange={handleValueChange}
-            />
-          ))}
+          {points.map((point, pointIndex) => {
+            // Check if this is the last point of the star (represents the complete star)
+            const isLastPoint = pointIndex === points.length - 1
+            return (
+              <RatingItem
+                key={point}
+                name={ratingName}
+                disabled={disabled}
+                hoveredValue={hoveredValue}
+                point={point}
+                precision={precision}
+                readOnly={readOnly}
+                size={size}
+                value={value}
+                variant={variant}
+                Icon={Icon}
+                onMouseLeave={() => setHoveredValue(0)}
+                onValueHover={handleValueHover}
+                onValueChange={handleValueChange}
+                starIndex={isLastPoint ? key : undefined}
+                filledStarsCount={filledStarsCount}
+              />
+            )
+          })}
         </span>
       ))}
     </div>

@@ -35,6 +35,38 @@ const testimonials: TestimonialItem[] = [
     rating: 4,
     content:
       'shadcn/studio has saved us countless hours in development. The component library is comprehensive and well-documented.'
+  },
+  {
+    name: 'Emma Wilson',
+    role: 'UX Designer',
+    company: 'Adobe',
+    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png?width=40&height=40&format=auto',
+    rating: 3,
+    content: 'Good components, but could use more customization options. Overall decent experience.'
+  },
+  {
+    name: 'Michael Brown',
+    role: 'Developer',
+    company: 'GitHub',
+    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-6.png?width=40&height=40&format=auto',
+    rating: 2,
+    content: 'Not quite what I expected. Some features are missing, but it works for basic needs.'
+  },
+  {
+    name: 'Lisa Anderson',
+    role: 'Product Manager',
+    company: 'Microsoft',
+    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-7.png?width=40&height=40&format=auto',
+    rating: 3,
+    content: 'Functional and reliable. Would like to see more updates and improvements in the future.'
+  },
+  {
+    name: 'David Lee',
+    role: 'Full Stack Dev',
+    company: 'Netflix',
+    avatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-8.png?width=40&height=40&format=auto',
+    rating: 4,
+    content: 'Great tool for rapid prototyping. The component library saves a lot of development time.'
   }
 ]
 
