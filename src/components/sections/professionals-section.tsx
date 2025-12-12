@@ -117,7 +117,7 @@ export default function ProfessionalsSection() {
 
   const carouselTestimonials = [
     {
-      name: 'Cliente Bravo',
+      name: 'Cliente Smidex',
       role: 'Gamer',
       company: 'Smidex',
       avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
@@ -337,7 +337,7 @@ export default function ProfessionalsSection() {
                 className="space-y-4 mb-8"
                 variants={staggerContainer}
               >
-                {[
+               ={[
                   { title: "FPS no Máximo", desc: "Mais quadros, mais fluidez." },
                   { title: "Estabilidade Profissional", desc: "Zero lag em momentos críticos." },
                   { title: "Foco Total no Jogo", desc: "Seu PC funcionando com a dedicação de um Pro Player." }
