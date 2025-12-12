@@ -33,7 +33,32 @@ const scaleIn = {
 const HeroSection = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#1A0F0F]">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 sm:inset-0">
+        <style jsx global>{`
+          @media (max-width: 640px) {
+            #lights {
+              display: flex !important;
+              justify-content: flex-start !important;
+              align-items: flex-start !important;
+              height: 896px !important;
+              width: 870px !important;
+              padding-left: 58px !important;
+              padding-right: 58px !important;
+              padding-top: 0px !important;
+              padding-bottom: 0px !important;
+              transform: rotate(360deg) !important;
+              position: absolute !important;
+              top: -150px !important;
+              left: 50% !important;
+              margin-left: -435px !important;
+            }
+            #lights canvas {
+              height: 896px !important;
+              width: 870px !important;
+              display: block !important;
+            }
+          }
+        `}</style>
         <Hyperspeed effectOptions={hyperspeedPresets.akira} />
       </div>
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-transparent via-[#1A0F0F]/50 to-[#1A0F0F]"></div>
