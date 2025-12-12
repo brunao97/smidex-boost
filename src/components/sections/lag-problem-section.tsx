@@ -47,7 +47,17 @@ export default function LagProblemSection() {
     {
       id: 4,
       icon: (
-        <Settings className="h-12 w-12 text-[#FF3333]" strokeWidth={1.5} />
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="inline-block"
+        >
+          <Settings className="h-12 w-12 text-[#FF3333]" strokeWidth={1.5} />
+        </motion.div>
       ),
       title: "Suporte Pós-Serviço",
       description:

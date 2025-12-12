@@ -86,10 +86,8 @@ export default function FaqSection() {
             transition={{ duration: 0.7 }}
           >
             <div className="flex flex-col gap-6 items-start">
-              <motion.div 
+              <motion.div
                 className="bg-[#2A1414] border border-[#3A2020] text-white font-semibold py-6 px-8 rounded-xl w-full text-center lg:text-left shadow-lg"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
               >
                 <h3 className="text-lg tracking-wide">Perguntas Frequentes</h3>
               </motion.div>
