@@ -25,7 +25,7 @@ function FloatingSocialButtons() {
         <Link
           href="https://api.whatsapp.com/send/?phone=5566999236481"
           target="_blank"
-          className="cursor-pointer flex items-center justify-center w-14 h-14 rounded-full bg-transparent border border-[#FF3333] hover:bg-[#FF3333]/10 transition-all duration-300 group"
+          className="cursor-pointer text-[#FF3333]"
           aria-label="WhatsApp"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-[#FF3333]">
@@ -41,7 +41,7 @@ function FloatingSocialButtons() {
         <Link
           href="https://instagram.com"
           target="_blank"
-          className="cursor-pointer flex items-center justify-center w-14 h-14 rounded-full bg-transparent border border-[#FF3333] hover:bg-[#FF3333]/10 transition-all duration-300 group"
+          className="cursor-pointer text-[#FF3333]"
           aria-label="Instagram"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 text-[#FF3333]">
