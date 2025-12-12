@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function FooterSection() {
@@ -25,25 +23,6 @@ export default function FooterSection() {
           >
             Copyright © 2025 Smidex Technologies. All rights Reserved
           </motion.p>
-
-          <motion.div 
-            className="mt-6 md:mt-0 md:absolute md:right-0 bottom-0 md:top-1/2 md:-translate-y-1/2"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-             <Link 
-                href="https://instagram.com" 
-                target="_blank"
-                className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-[#FF3333] hover:border-[#FF3333] transition-all duration-300 group"
-                aria-label="Instagram"
-             >
-                <motion.div whileHover={{ scale: 1.2, rotate: 10 }} transition={{ duration: 0.2 }}>
-                  <Instagram className="w-5 h-5 text-white" />
-                </motion.div>
-             </Link>
-          </motion.div>
 
         </motion.div>
       </div>
