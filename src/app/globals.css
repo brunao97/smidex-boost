@@ -222,6 +222,24 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+
+  /* Smooth scroll for all elements */
+  * {
+    scroll-behavior: inherit;
+  }
+
+  /* Improve scroll performance */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

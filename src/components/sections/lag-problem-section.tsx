@@ -4,6 +4,7 @@ import { Target, ShieldCheck, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { SpeedIcon } from '@/components/icons/speed-icon';
+import { useState, useEffect, useRef } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -21,6 +22,9 @@ const staggerContainer = {
 };
 
 export default function LagProblemSection() {
+  const [activeCard, setActiveCard] = useState(0);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+
   const cards = [
     {
       id: 1,
@@ -66,6 +70,125 @@ export default function LagProblemSection() {
     },
   ];
 
+  useEffect(() => {
+    const container = cardsContainerRef.current;
+    if (!container) return;
+
+    const updateActiveCard = () => {
+      const cardElements = Array.from(container.querySelectorAll('[data-card-index]')) as HTMLElement[];
+      if (cardElements.length === 0) return;
+
+      // Para scroll horizontal, calcular baseado no scrollLeft e posição dos cards
+      const containerWidth = container.clientWidth;
+      const scrollLeft = container.scrollLeft;
+      const containerCenter = scrollLeft + containerWidth / 2;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      cardElements.forEach((card) => {
+        // Obter posição absoluta do card
+        const cardRect = card.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        
+        // Calcular posição do card relativa ao container considerando o scroll
+        const cardLeft = cardRect.left - containerRect.left + scrollLeft;
+        const cardWidth = cardRect.width;
+        const cardCenter = cardLeft + cardWidth / 2;
+        
+        const distance = Math.abs(cardCenter - containerCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          const index = parseInt(card.getAttribute('data-card-index') || '0');
+          closestIndex = index;
+        }
+      });
+
+      setActiveCard(closestIndex);
+    };
+
+    let rafId: number | null = null;
+    let scrollTimeout: NodeJS.Timeout;
+    let lastScrollLeft = container.scrollLeft;
+
+    // Atualizar durante o scroll horizontal usando RAF
+    const handleScroll = () => {
+      const currentScrollLeft = container.scrollLeft;
+      
+      // Só atualizar se o scroll realmente mudou
+      if (Math.abs(currentScrollLeft - lastScrollLeft) < 1) return;
+      
+      lastScrollLeft = currentScrollLeft;
+
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+
+      rafId = requestAnimationFrame(() => {
+        updateActiveCard();
+        rafId = null;
+      });
+
+      // Atualizar quando scroll parar (importante para snap scroll horizontal)
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        updateActiveCard();
+      }, 150);
+    };
+
+    // scrollend event (melhor para snap scroll horizontal)
+    const handleScrollEnd = () => {
+      updateActiveCard();
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    
+    if ('onscrollend' in window) {
+      container.addEventListener('scrollend', handleScrollEnd, { passive: true });
+    }
+
+    // IntersectionObserver otimizado para scroll horizontal
+    const observerOptions = {
+      root: container,
+      rootMargin: '0px',
+      threshold: [0.3, 0.5, 0.7]
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      let maxRatio = 0;
+      let activeIndex = 0;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          activeIndex = parseInt(entry.target.getAttribute('data-card-index') || '0');
+        }
+      });
+
+      if (maxRatio > 0.3) {
+        setActiveCard(activeIndex);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const cardElements = container.querySelectorAll('[data-card-index]');
+    cardElements.forEach((card) => observer.observe(card));
+
+    // Inicializar
+    updateActiveCard();
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      clearTimeout(scrollTimeout);
+      container.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+      if ('onscrollend' in window) {
+        container.removeEventListener('scrollend', handleScrollEnd);
+      }
+    };
+  }, []);
+
   return (
     <section className="bg-[#1A0F0F] text-white py-20 px-4 md:px-8 overflow-hidden font-body">
       <div className="max-w-[1200px] mx-auto">
@@ -98,7 +221,8 @@ export default function LagProblemSection() {
         </motion.div>
 
         <div className="relative w-full">
-          <motion.div 
+          <motion.div
+            ref={cardsContainerRef}
             className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
             initial="hidden"
             whileInView="visible"
@@ -108,6 +232,7 @@ export default function LagProblemSection() {
             {cards.map((card, index) => (
               <motion.div
                 key={card.id}
+                data-card-index={index}
                 className="flex-shrink-0 w-[85%] md:w-[45%] lg:w-[23.5%] snap-start"
                 variants={fadeInUp}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -139,10 +264,14 @@ export default function LagProblemSection() {
           </motion.div>
 
           <div className="flex justify-center gap-2 mt-4 md:hidden">
-            <span className="h-2 w-2 rounded-full bg-[#FF3333]"></span>
-            <span className="h-2 w-2 rounded-full bg-[#3A2020]"></span>
-            <span className="h-2 w-2 rounded-full bg-[#3A2020]"></span>
-            <span className="h-2 w-2 rounded-full bg-[#3A2020]"></span>
+            {cards.map((_, index) => (
+              <span
+                key={index}
+                className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                  index === activeCard ? 'bg-[#FF3333]' : 'bg-[#3A2020]'
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
