@@ -7,6 +7,7 @@ import AboutSection from "@/components/sections/about-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
 import FaqSection from "@/components/sections/faq-section";
 import FooterSection from "@/components/sections/footer-section";
+import VideosSection from "@/components/sections/videos-section";
 
 export {
   HeroSection,
@@ -18,4 +19,5 @@ export {
   TestimonialsSection,
   FaqSection,
   FooterSection,
+  VideosSection,
 };

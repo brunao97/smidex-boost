@@ -9,6 +9,7 @@ import {
   AboutSection,
   FaqSection,
   FooterSection,
+  VideosSection,
 } from "@/components/sections";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import { FloatingButton, FloatingButtonItem } from "@/components/ui/floating-button";
@@ -68,6 +69,9 @@ export default function Home() {
       </ScrollAnimate>
       <ScrollAnimate delay={0.1}>
         <AboutSection />
+      </ScrollAnimate>
+      <ScrollAnimate delay={0.1}>
+        <VideosSection />
       </ScrollAnimate>
       <ScrollAnimate delay={0.1}>
         <FaqSection />
