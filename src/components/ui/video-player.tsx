@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Heart } from 'lucide-react';
+import { BorderBeam } from './border-beam';
 
 interface VideoPlayerProps {
   src: string;
@@ -23,6 +24,8 @@ export function VideoPlayer({ src, thumbnail, className = '', title, author, onP
   const [isLiked, setIsLiked] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [generatedThumbnail, setGeneratedThumbnail] = useState<string | null>(null);
+  const [currentFrameThumbnail, setCurrentFrameThumbnail] = useState<string | null>(null);
+  const [isPausing, setIsPausing] = useState(false);
 
   // Motion value para progresso - apenas no cliente
   const progressValue = useMotionValue(0);
@@ -98,22 +101,54 @@ export function VideoPlayer({ src, thumbnail, className = '', title, author, onP
       setIsPlaying(true);
       // Esconder thumbnail imediatamente quando começar a reproduzir
       setShowThumbnail(false);
+      // Limpar o frame atual quando começar a reproduzir novamente
+      setCurrentFrameThumbnail(null);
       // Notificar componente pai
       onPlayingChange?.(true);
     };
     const handlePause = () => {
       setIsPlaying(false);
-      // Mostrar thumbnail quando pausar
-      setShowThumbnail(true);
-      // Garantir que o estado seja atualizado corretamente
-      if (video) {
-        video.currentTime = video.currentTime; // Força atualização
-      }
-      // Notificar componente pai
+      // Notificar componente pai primeiro
       onPlayingChange?.(false);
+      
+      // Capturar o frame atual do vídeo quando pausar (síncrono, sem delay)
+      if (video && video.videoWidth > 0 && video.videoHeight > 0) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const currentFrameUrl = canvas.toDataURL('image/jpeg', 0.9);
+            setCurrentFrameThumbnail(currentFrameUrl);
+          }
+        } catch (error) {
+          console.error('Error capturing current frame:', error);
+        }
+      }
+      
+      // Mostrar thumbnail imediatamente (sem delay e sem animação)
+      setShowThumbnail(true);
     };
     const handleEnded = () => {
       setIsPlaying(false);
+      // Capturar o último frame quando terminar
+      if (video && video.videoWidth > 0 && video.videoHeight > 0) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const finalFrameUrl = canvas.toDataURL('image/jpeg', 0.9);
+            setCurrentFrameThumbnail(finalFrameUrl);
+          }
+        } catch (error) {
+          console.error('Error capturing final frame:', error);
+        }
+      }
       // Mostrar thumbnail quando terminar
       setShowThumbnail(true);
       // Reset para o início quando terminar
@@ -199,12 +234,22 @@ export function VideoPlayer({ src, thumbnail, className = '', title, author, onP
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
+      {/* Border Beam - aparece quando o vídeo está reproduzindo */}
+      {isPlaying && !showThumbnail && (
+        <BorderBeam 
+          className="inset-0 top-0 left-0"
+          lightColor="#DC143C"
+          lightWidth={150}
+          duration={8}
+          borderWidth={3}
+        />
+      )}
       {/* Thumbnail overlay - sempre visível quando showThumbnail é true */}
       {showThumbnail && (
-        <div className="group absolute inset-0 z-30 cursor-pointer rounded-[inherit] transition-all duration-300 ease-in">
-          {(thumbnail || generatedThumbnail) ? (
+        <div className="group absolute inset-0 z-30 cursor-pointer rounded-[inherit]">
+          {(currentFrameThumbnail || thumbnail || generatedThumbnail) ? (
             <img
-              src={generatedThumbnail || thumbnail}
+              src={currentFrameThumbnail || generatedThumbnail || thumbnail}
               alt="Video thumbnail"
               className="size-full object-cover rounded-[inherit]"
               onError={(e) => {
@@ -229,19 +274,26 @@ export function VideoPlayer({ src, thumbnail, className = '', title, author, onP
       )}
 
       {/* Video element */}
-      <video
-        ref={videoRef}
-        tabIndex={0}
-        className={`h-full w-full cursor-pointer rounded-[inherit] bg-black transition-opacity duration-300 ${showThumbnail ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        onClick={togglePlay}
-        preload="metadata"
-        poster={generatedThumbnail || thumbnail || undefined}
-        playsInline
-        style={{ display: showThumbnail ? 'none' : 'block' }}
+      <div
+        style={{ 
+          display: showThumbnail ? 'none' : 'block',
+          pointerEvents: showThumbnail ? 'none' : 'auto',
+        }}
+        className="h-full w-full"
       >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <video
+          ref={videoRef}
+          tabIndex={0}
+          className="h-full w-full cursor-pointer rounded-[inherit] bg-black"
+          onClick={togglePlay}
+          preload="metadata"
+          poster={generatedThumbnail || thumbnail || undefined}
+          playsInline
+        >
+          <source src={src} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       {/* Title and Author overlay (when playing) */}
       {!showThumbnail && (title || author) && (
@@ -257,26 +309,43 @@ export function VideoPlayer({ src, thumbnail, className = '', title, author, onP
 
       {/* Large centered play/pause button (when playing) - só aparece no hover quando reproduzindo */}
       {!showThumbnail && (
-        <div className={`absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-500 ease-in-out ${
-          isPlaying 
-            ? 'opacity-0 group-hover/video:opacity-100' 
-            : 'opacity-100'
-        }`}>
-          <button
+        <motion.div
+          className={`absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-500 ease-in-out ${
+            isPlaying 
+              ? 'opacity-0 group-hover/video:opacity-100' 
+              : 'opacity-100'
+          }`}
+          animate={isPausing ? {
+            scale: [1, 1.05, 1],
+          } : {}}
+          transition={{
+            duration: 0.4,
+            ease: [0.4, 0, 0.2, 1],
+          }}
+        >
+          <motion.button
             onClick={togglePlay}
             className={`flex size-20 sm:size-24 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 shadow-lg ${
               isPlaying
                 ? 'bg-white/20 backdrop-blur-sm hover:bg-white/30'
                 : 'bg-[#FF3333] hover:bg-[#d62626] shadow-[#FF3333]/50'
             }`}
+            animate={isPausing ? {
+              scale: [1, 1.1, 1],
+              rotate: [0, -3, 3, 0],
+            } : {}}
+            transition={{
+              duration: 0.4,
+              ease: [0.4, 0, 0.2, 1],
+            }}
           >
             {isPlaying ? (
               <Pause className="size-8 sm:size-10 text-white" fill="currentColor" />
             ) : (
               <Play className="size-8 sm:size-10 text-white ml-1" fill="currentColor" />
             )}
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       )}
 
       {/* Bottom controls bar */}
