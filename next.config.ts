@@ -16,8 +16,13 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
   },
-  // outputFileTracingRoot: path.resolve(__dirname, '../../'), // Removido para compatibilidade com Vercel
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  productionBrowserSourceMaps: false,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -30,7 +35,10 @@ const nextConfig: NextConfig = {
         loaders: [loaderPath]
       }
     }
-  }
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
 } as NextConfig;
 
 export default nextConfig;
