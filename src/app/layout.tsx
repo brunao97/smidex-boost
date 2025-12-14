@@ -33,14 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload LCP image for faster rendering */}
         <link
           rel="preload"
           as="image"
           href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/smidex-boost-logo-1765425227304.png?width=8000&height=8000&resize=contain"
           fetchPriority="high"
         />
-        {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://slelguoygbfzlpylpxfs.supabase.co" />
         <link rel="dns-prefetch" href="https://slelguoygbfzlpylpxfs.supabase.co" />
       </head>
